@@ -166,7 +166,7 @@ const TimetablePage = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={handleSearchFocus}
-                  placeholder="Ex Aditi"
+                  placeholder="Ex Aditya"
                   className={styles.searchInput}
                   autoComplete="off"
                 />
