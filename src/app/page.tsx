@@ -47,7 +47,7 @@ function getTimetable(schedule: ScheduleEntry[], group: number): ScheduleEntry[]
 }
 
 function getSchedule(schedule: ScheduleEntry[], name: string, group: string): Student {
-  let timetableSlot = schedule.map(entry => ({
+  const timetableSlot = schedule.map(entry => ({
     time: `${entry.timeStart} - ${entry.timeEnd}`,
     course: entry.CourseName,
     groups: `${entry.GroupStart} to ${entry.GroupEnd}`,
