@@ -1,0 +1,148 @@
+{
+  "Schedule": [
+    {
+      "timeStart": "8:00",
+      "timeEnd": "8:55",
+      "GroupStart": "13",
+      "GroupEnd": "18",
+      "CourseName": "ME1102",
+      "type": "CLH-LT003"
+    },
+    {
+      "timeStart": "8:00",
+      "timeEnd": "8:55",
+      "GroupStart": "7",
+      "GroupEnd": "12",
+      "CourseName": "PH1101",
+      "type": "CLH-LT103"
+    },
+    {
+      "timeStart": "9:00",
+      "timeEnd": "11:55",
+      "GroupStart": "19",
+      "GroupEnd": "21",
+      "CourseName": "ME1101",
+      "type": "LAB"
+    },
+    {
+      "timeStart": "9:00",
+      "timeEnd": "11:55",
+      "GroupStart": "10",
+      "GroupEnd": "12",
+      "CourseName": "EE1101",
+      "type": "LAB"
+    },
+    {
+      "timeStart": "9:00",
+      "timeEnd": "11:55",
+      "GroupStart": "13",
+      "GroupEnd": "16",
+      "CourseName": "CS1101",
+      "type": "LAB"
+    },
+    {
+      "timeStart": "9:00",
+      "timeEnd": "11:55",
+      "GroupStart": "22",
+      "GroupEnd": "24",
+      "CourseName": "CH1101",
+      "type": "LAB"
+    },
+    {
+      "timeStart": "9:00",
+      "timeEnd": "9:55",
+      "GroupStart": "1",
+      "GroupEnd": "8",
+      "CourseName": "CS1101",
+      "type": "CLH-LT003"
+    },
+    {
+      "timeStart": "9:00",
+      "timeEnd": "9:55",
+      "GroupStart": "1",
+      "GroupEnd": "24",
+      "CourseName": "HSS",
+      "type": "CLH-LT103"
+    },
+    {
+      "timeStart": "10:00",
+      "timeEnd": "10:55",
+      "GroupStart": "1",
+      "GroupEnd": "8",
+      "CourseName": "MA1101",
+      "type": "CLH-LT003"
+    },
+    {
+      "timeStart": "11:00",
+      "timeEnd": "11:55",
+      "GroupStart": "1",
+      "GroupEnd": "8",
+      "CourseName": "HS1101",
+      "type": "CLH-LT003"
+    },
+    {
+      "timeStart": "12:00",
+      "timeEnd": "12:55",
+      "GroupStart": "9",
+      "GroupEnd": "16",
+      "CourseName": "MA1101",
+      "type": "CLH-LT003"
+    },
+    {
+      "timeStart": "12:00",
+      "timeEnd": "12:55",
+      "GroupStart": "19",
+      "GroupEnd": "24",
+      "CourseName": "ME1102",
+      "type": "CLH-LT103"
+    },
+    {
+      "timeStart": "16:00",
+      "timeEnd": "16:55",
+      "GroupStart": "9",
+      "GroupEnd": "16",
+      "CourseName": "HS1101",
+      "type": "CLH-LT003"
+    },
+    {
+      "timeStart": "15:00",
+      "timeEnd": "15:55",
+      "GroupStart": "7",
+      "GroupEnd": "12",
+      "CourseName": "EE1101",
+      "type": "CLH-LT103"
+    },
+    {
+      "timeStart": "16:00",
+      "timeEnd": "16:55",
+      "GroupStart": "1",
+      "GroupEnd": "6",
+      "CourseName": "EE1101",
+      "type": "CLH-LT103"
+    },
+    {
+      "timeStart": "17:00",
+      "timeEnd": "17:55",
+      "GroupStart": "9",
+      "GroupEnd": "16",
+      "CourseName": "CS1101",
+      "type": "CLH-LT003"
+    },
+    {
+      "timeStart": "17:00",
+      "timeEnd": "17:55",
+      "GroupStart": "17",
+      "GroupEnd": "24",
+      "CourseName": "MA1101",
+      "type": "CLH-LT103"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "1",
+      "GroupEnd": "24",
+      "CourseName": "HS1101",
+      "type": "PRACTICAL"
+    }
+  ]
+}
