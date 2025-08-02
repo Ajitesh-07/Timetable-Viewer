@@ -5,7 +5,6 @@ import timetable from '../../lib/timetable/schedule.json';
 import styles from "./page.module.css";
 import Head from "next/head";
 
-// --- Interfaces and Type Definitions (Unchanged) ---
 interface TimetableSlot {
   time: string;
   course: string;
@@ -30,13 +29,11 @@ type ScheduleEntry = {
 
 type WeekDay = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday';
 
-
-// --- Helper Functions (Unchanged) ---
 function getTimetable(schedule: ScheduleEntry[], group: number): ScheduleEntry[] {
   const interestedCourses = schedule.filter(course => {
     const start = parseInt(course.GroupStart, 10);
     const end = parseInt(course.GroupEnd, 10);
-    return group >= start && group <= end;
+    return group >= start && group <= end && course.CourseName.toUpperCase() != "HSS";
   });
 
   return interestedCourses.sort((a, b) => {
@@ -62,23 +59,20 @@ function getSchedule(schedule: ScheduleEntry[], name: string, group: string): St
 }
 
 
-// --- Component ---
 const TimetablePage = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isSuggestionsVisible, setSuggestionsVisible] = useState<boolean>(false);
 
-  // State for selected student's basic info
   const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: string; group: string } | null>(null);
-  // State for the full student schedule object
+
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
-  // State for the selected day of the week
   const [selectedDay, setSelectedDay] = useState<WeekDay>('monday');
+  const daySelectorRef = useRef<HTMLDivElement>(null);
 
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
 
-  // Filter student suggestions based on search query
   useEffect(() => {
     if (searchQuery.trim().length > 0 && searchQuery !== (selectedStudentInfo?.name || '')) {
       const filtered = Object.keys(nameMap).filter(student =>
@@ -92,7 +86,13 @@ const TimetablePage = () => {
     }
   }, [searchQuery, selectedStudentInfo]);
 
-  // Effect to update the timetable when a student or day is selected
+
+  useEffect(() => {
+    if (daySelectorRef.current) {
+      daySelectorRef.current.scrollLeft = 0;
+    }
+  }, [selectedStudent]);
+
   useEffect(() => {
     if (selectedStudentInfo) {
       const { name, group } = selectedStudentInfo;
@@ -103,8 +103,6 @@ const TimetablePage = () => {
     }
   }, [selectedStudentInfo, selectedDay]);
 
-
-  // Hide suggestions when clicking outside the search container
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
@@ -197,7 +195,7 @@ const TimetablePage = () => {
                   </span>
                 </div>
 
-                <div className={styles.daySelector}>
+                <div className={styles.daySelector} ref={daySelectorRef}>
                   {daysOfWeek.map(day => (
                     <button
                       key={day}
