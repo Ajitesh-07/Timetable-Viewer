@@ -143,7 +143,7 @@ const TimetablePage = () => {
           <main className={styles.mainContent}>
             <h1 className={styles.title}>Student Timetable Finder 🗓️</h1>
             <p className={styles.subtitle}>
-              Enter a student's name to view their weekly schedule.
+              Enter a student name to view their weekly schedule.
             </p>
 
             <div className={styles.searchContainer} ref={searchContainerRef}>
@@ -168,7 +168,7 @@ const TimetablePage = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={handleSearchFocus}
-                  placeholder="e.g., Aditi"
+                  placeholder="Ex Aditi"
                   className={styles.searchInput}
                   autoComplete="off"
                 />
