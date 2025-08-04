@@ -60,7 +60,7 @@ function getTimetable(schedule: Course[], students: Student[]): Course[] {
 //   };
 // }
 
-export const ScheduleComparer: FC = () => {
+export const ScheduleComparer = () => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [searchResults, setSearchResults] = useState<Student[]>([]);
     const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
