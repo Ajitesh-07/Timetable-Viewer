@@ -5,7 +5,6 @@ import styles from './page.module.css';
 import nameMap from '@/../lib/nameMap.json';
 import timetable from '@/../lib/timetable/schedule.json';
 
-// --- TYPE DEFINITIONS ---
 interface Student {
     name: string;
     group: number;

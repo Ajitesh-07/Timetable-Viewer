@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import nameMap from '../../lib/nameMap.json';
 import timetable from '../../lib/timetable/schedule.json';
 import styles from "./page.module.css";
-import { useRouter } from"next/navigation"
+import { useRouter } from "next/navigation"
 import Head from "next/head";
 
 interface TimetableSlot {
@@ -238,6 +238,11 @@ const TimetablePage = () => {
               </div>
             )}
           </main>
+
+          <footer className={styles.footer}>
+            <p>Made with ❤️ by Ajitesh (AI&DS)</p>
+          </footer>
+
         </div>
       </main>
     </>
