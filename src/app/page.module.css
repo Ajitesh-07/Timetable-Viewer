@@ -244,6 +244,11 @@
   }
 }
 
+.routerLink {
+  color: #1877f2;
+  cursor: pointer;
+}
+
 /* --- Responsive Design --- */
 @media (max-width: 600px) {
     .pageContainer {

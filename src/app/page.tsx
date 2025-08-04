@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import nameMap from '../../lib/nameMap.json';
 import timetable from '../../lib/timetable/schedule.json';
 import styles from "./page.module.css";
+import { useRouter } from"next/navigation"
 import Head from "next/head";
 
 interface TimetableSlot {
@@ -72,6 +73,7 @@ const TimetablePage = () => {
 
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+  const router = useRouter();
 
   useEffect(() => {
     if (searchQuery.trim().length > 0 && searchQuery !== (selectedStudentInfo?.name || '')) {
@@ -85,13 +87,6 @@ const TimetablePage = () => {
       setSuggestionsVisible(false);
     }
   }, [searchQuery, selectedStudentInfo]);
-
-
-  useEffect(() => {
-    if (daySelectorRef.current) {
-      daySelectorRef.current.scrollLeft = 0;
-    }
-  }, [selectedStudent]);
 
   useEffect(() => {
     if (selectedStudentInfo) {
@@ -129,6 +124,10 @@ const TimetablePage = () => {
     }
   };
 
+  const handleRouter = () => {
+    router.push('/compare')
+  }
+
   return (
     <>
       <Head>
@@ -142,6 +141,7 @@ const TimetablePage = () => {
             <h1 className={styles.title}>Student Timetable Finder 🗓️</h1>
             <p className={styles.subtitle}>
               Enter a student name to view their weekly schedule.
+              Click <a className={styles.routerLink} onClick={handleRouter}>here</a> to Check you and your friends have a common class
             </p>
 
             <div className={styles.searchContainer} ref={searchContainerRef}>

@@ -1,0 +1,209 @@
+/* styles/page.module.css */
+
+.container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  font-family: 'Inter', sans-serif;
+}
+
+.card {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666666;
+  margin-bottom: 1.75rem;
+}
+
+.searchContainer {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+.searchInput:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.searchResultsList {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.searchResultItem {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+.searchResultItem:hover {
+  background-color: #f3f4f6;
+}
+
+.groupInfo {
+  font-size: 0.875rem;
+  color: #888888;
+}
+
+.selectionArea {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.selectedStudent {
+  background-color: #eef6ff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  color: #1e3a8a;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #1e3a8a;
+  transition: color 0.2s;
+}
+.removeButton:hover {
+  color: #4f46e5;
+}
+
+.compareButton {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0.75rem 2rem;
+  background-color: #4f46e5;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.compareButton:disabled {
+  background-color: #a5b4fc;
+  cursor: not-allowed;
+}
+.compareButton:not(:disabled):hover {
+  background-color: #4338ca;
+}
+
+.resultsContainer {
+  margin-top: 2.5rem;
+}
+
+.tabList {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+
+.tabItem, .activeTab {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.tabItem {
+  background-color: #f3f4f6;
+  color: #555555;
+}
+.tabItem:hover {
+  background-color: #e5e7eb;
+}
+.activeTab {
+  background-color: #4f46e5;
+  color: #ffffff;
+}
+
+.courseTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.courseTable th,
+.courseTable td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #333333;
+}
+
+.courseTable thead th {
+  background-color: #f9fafb;
+  font-weight: 600;
+  color: #555555;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.courseTable tbody tr:hover {
+  background-color: #f3f4f6;
+}
+
+.courseTable tbody tr:not(:last-child) td {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.noResults {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+    .tabList {
+        justify-content: flex-start;
+    }
+}

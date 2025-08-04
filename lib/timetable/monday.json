@@ -111,6 +111,102 @@
       "GroupEnd": "21",
       "CourseName": "CH1101",
       "type": "LAB"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "13",
+      "GroupEnd": "13",
+      "CourseName": "MA1101 Tut",
+      "type": "R101"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "14",
+      "GroupEnd": "14",
+      "CourseName": "MA1101 Tut",
+      "type": "R102"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "15",
+      "GroupEnd": "15",
+      "CourseName": "MA1101 Tut",
+      "type": "R103"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "16",
+      "GroupEnd": "16",
+      "CourseName": "MA1101 Tut",
+      "type": "R104"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "17",
+      "GroupEnd": "17",
+      "CourseName": "MA1101 Tut",
+      "type": "R107"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "18",
+      "GroupEnd": "18",
+      "CourseName": "MA1101 Tut",
+      "type": "R108"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "19",
+      "GroupEnd": "19",
+      "CourseName": "MA1101 Tut",
+      "type": "R109"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "20",
+      "GroupEnd": "20",
+      "CourseName": "MA1101 Tut",
+      "type": "R306"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "21",
+      "GroupEnd": "21",
+      "CourseName": "MA1101 Tut",
+      "type": "R305"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "22",
+      "GroupEnd": "22",
+      "CourseName": "MA1101 Tut",
+      "type": "R301"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "23",
+      "GroupEnd": "23",
+      "CourseName": "MA1101 Tut",
+      "type": "R302"
+    },
+    {
+      "timeStart": "18:00",
+      "timeEnd": "18:55",
+      "GroupStart": "24",
+      "GroupEnd": "24",
+      "CourseName": "MA1101 Tut",
+      "type": "R303"
     }
   ]
 }
