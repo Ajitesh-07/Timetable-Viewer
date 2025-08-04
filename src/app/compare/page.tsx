@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import styles from './page.module.css';
 import nameMap from '@/../lib/nameMap.json';
 import timetable from '@/../lib/timetable/schedule.json';
@@ -60,7 +60,7 @@ function getTimetable(schedule: Course[], students: Student[]): Course[] {
 //   };
 // }
 
-export const ScheduleComparer = () => {
+export default function ScheduleComparer() {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [searchResults, setSearchResults] = useState<Student[]>([]);
     const [selectedStudents, setSelectedStudents] = useState<Student[]>([]);
@@ -113,7 +113,7 @@ export const ScheduleComparer = () => {
 
     useEffect(() => {
         setCommonCourses(getTimetable(timetable[activeDay.toLowerCase() as keyof typeof timetable].Schedule as Course[], selectedStudents));
-    }, [activeDay]);
+    }, [activeDay, selectedStudents, hasCompared]);
 
     return (
         <main className={styles.container}>
@@ -203,5 +203,3 @@ export const ScheduleComparer = () => {
         </main>
     );
 };
-
-export default ScheduleComparer;
