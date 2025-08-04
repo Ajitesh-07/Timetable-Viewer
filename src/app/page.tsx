@@ -30,6 +30,15 @@ type ScheduleEntry = {
 
 type WeekDay = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday';
 
+function cleanTime(a: string) {
+  let newTime = ""
+  if(a[1] == ':') {
+    newTime = "0";
+    newTime += a;
+    return newTime;
+  } else return a;
+}
+
 function getTimetable(schedule: ScheduleEntry[], group: number): ScheduleEntry[] {
   const interestedCourses = schedule.filter(course => {
     const start = parseInt(course.GroupStart, 10);
@@ -38,8 +47,8 @@ function getTimetable(schedule: ScheduleEntry[], group: number): ScheduleEntry[]
   });
 
   return interestedCourses.sort((a, b) => {
-    const timeA = new Date(`1970-01-01T${a.timeStart}:00`);
-    const timeB = new Date(`1970-01-01T${b.timeStart}:00`);
+    const timeA = new Date(`1970-01-01T${cleanTime(a.timeStart)}:00`);
+    const timeB = new Date(`1970-01-01T${cleanTime(b.timeStart)}:00`);
     return timeA.getTime() - timeB.getTime();
   });
 }
