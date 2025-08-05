@@ -150,7 +150,7 @@ const TimetablePage = () => {
             <h1 className={styles.title}>Student Timetable Finder 🗓️</h1>
             <p className={styles.subtitle}>
               Enter a student name to view their weekly schedule.
-              Click <a className={styles.routerLink} onClick={handleRouter}>here</a> to Check you and your friends have a common class
+              Click <a className={styles.routerLink} onClick={handleRouter}>here</a> to check if you and your friends have a common class
             </p>
 
             <div className={styles.searchContainer} ref={searchContainerRef}>
