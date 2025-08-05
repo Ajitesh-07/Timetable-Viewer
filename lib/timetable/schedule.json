@@ -159,7 +159,7 @@
                 "GroupStart": "4",
                 "GroupEnd": "4",
                 "CourseName": "PH1101 Tut",
-                "type": "R104"
+                "type": "R107"
             },
             {
                 "timeStart": "18:00",
@@ -167,7 +167,7 @@
                 "GroupStart": "5",
                 "GroupEnd": "5",
                 "CourseName": "PH1101 Tut",
-                "type": "R107"
+                "type": "R109"
             },
             {
                 "timeStart": "18:00",
@@ -175,7 +175,7 @@
                 "GroupStart": "6",
                 "GroupEnd": "6",
                 "CourseName": "PH1101 Tut",
-                "type": "R108"
+                "type": "R301"
             },
             {
                 "timeStart": "18:00",
@@ -183,7 +183,7 @@
                 "GroupStart": "7",
                 "GroupEnd": "7",
                 "CourseName": "PH1101 Tut",
-                "type": "R109"
+                "type": "R302"
             },
             {
                 "timeStart": "18:00",
@@ -191,7 +191,7 @@
                 "GroupStart": "8",
                 "GroupEnd": "8",
                 "CourseName": "PH1101 Tut",
-                "type": "R306"
+                "type": "R303"
             },
             {
                 "timeStart": "18:00",
@@ -207,7 +207,7 @@
                 "GroupStart": "10",
                 "GroupEnd": "10",
                 "CourseName": "PH1101 Tut",
-                "type": "R301"
+                "type": "R306"
             },
             {
                 "timeStart": "18:00",
@@ -215,7 +215,7 @@
                 "GroupStart": "11",
                 "GroupEnd": "11",
                 "CourseName": "PH1101 Tut",
-                "type": "R302"
+                "type": "R307"
             },
             {
                 "timeStart": "18:00",
@@ -223,7 +223,7 @@
                 "GroupStart": "12",
                 "GroupEnd": "12",
                 "CourseName": "PH1101 Tut",
-                "type": "R303"
+                "type": "R308"
             }
         ]
     },
@@ -256,8 +256,8 @@
             {
                 "timeStart": "9:00",
                 "timeEnd": "9:55",
-                "GroupStart": 1,
-                "GroupEnd": 24,
+                "GroupStart": "1",
+                "GroupEnd": "24",
                 "CourseName": "HSS",
                 "type": "CLH-LT103"
             },
@@ -371,7 +371,7 @@
                 "GroupStart": "16",
                 "GroupEnd": "16",
                 "CourseName": "MA1101 Tut",
-                "type": "R104"
+                "type": "R107"
             },
             {
                 "timeStart": "18:00",
@@ -379,7 +379,7 @@
                 "GroupStart": "17",
                 "GroupEnd": "17",
                 "CourseName": "MA1101 Tut",
-                "type": "R107"
+                "type": "R109"
             },
             {
                 "timeStart": "18:00",
@@ -387,7 +387,7 @@
                 "GroupStart": "18",
                 "GroupEnd": "18",
                 "CourseName": "MA1101 Tut",
-                "type": "R108"
+                "type": "R301"
             },
             {
                 "timeStart": "18:00",
@@ -395,7 +395,7 @@
                 "GroupStart": "19",
                 "GroupEnd": "19",
                 "CourseName": "MA1101 Tut",
-                "type": "R109"
+                "type": "R302"
             },
             {
                 "timeStart": "18:00",
@@ -403,7 +403,7 @@
                 "GroupStart": "20",
                 "GroupEnd": "20",
                 "CourseName": "MA1101 Tut",
-                "type": "R306"
+                "type": "R303"
             },
             {
                 "timeStart": "18:00",
@@ -419,7 +419,7 @@
                 "GroupStart": "22",
                 "GroupEnd": "22",
                 "CourseName": "MA1101 Tut",
-                "type": "R301"
+                "type": "R306"
             },
             {
                 "timeStart": "18:00",
@@ -427,7 +427,7 @@
                 "GroupStart": "23",
                 "GroupEnd": "23",
                 "CourseName": "MA1101 Tut",
-                "type": "R302"
+                "type": "R307"
             },
             {
                 "timeStart": "18:00",
@@ -435,7 +435,7 @@
                 "GroupStart": "24",
                 "GroupEnd": "24",
                 "CourseName": "MA1101 Tut",
-                "type": "R303"
+                "type": "R308"
             }
         ]
     },
@@ -615,7 +615,7 @@
                 "GroupStart": "16",
                 "GroupEnd": "16",
                 "CourseName": "CH1101 Tut",
-                "type": "R104"
+                "type": "R107"
             },
             {
                 "timeStart": "18:00",
@@ -623,7 +623,7 @@
                 "GroupStart": "17",
                 "GroupEnd": "17",
                 "CourseName": "CH1101 Tut",
-                "type": "R107"
+                "type": "R109"
             },
             {
                 "timeStart": "18:00",
@@ -631,7 +631,7 @@
                 "GroupStart": "18",
                 "GroupEnd": "18",
                 "CourseName": "CH1101 Tut",
-                "type": "R108"
+                "type": "R301"
             },
             {
                 "timeStart": "18:00",
@@ -639,7 +639,7 @@
                 "GroupStart": "19",
                 "GroupEnd": "19",
                 "CourseName": "CH1101 Tut",
-                "type": "R109"
+                "type": "R302"
             },
             {
                 "timeStart": "18:00",
@@ -647,7 +647,7 @@
                 "GroupStart": "20",
                 "GroupEnd": "20",
                 "CourseName": "CH1101 Tut",
-                "type": "R306"
+                "type": "R303"
             },
             {
                 "timeStart": "18:00",
@@ -663,7 +663,7 @@
                 "GroupStart": "22",
                 "GroupEnd": "22",
                 "CourseName": "CH1101 Tut",
-                "type": "R301"
+                "type": "R306"
             },
             {
                 "timeStart": "18:00",
@@ -671,7 +671,7 @@
                 "GroupStart": "23",
                 "GroupEnd": "23",
                 "CourseName": "CH1101 Tut",
-                "type": "R302"
+                "type": "R307"
             },
             {
                 "timeStart": "18:00",
@@ -679,7 +679,7 @@
                 "GroupStart": "24",
                 "GroupEnd": "24",
                 "CourseName": "CH1101 Tut",
-                "type": "R303"
+                "type": "R308"
             }
         ]
     },
@@ -736,8 +736,8 @@
             {
                 "timeStart": "9:00",
                 "timeEnd": "9:55",
-                "GroupStart": 1,
-                "GroupEnd": 24,
+                "GroupStart": "1",
+                "GroupEnd": "24",
                 "CourseName": "HSS",
                 "type": "CLH-LT103"
             },
@@ -843,7 +843,7 @@
                 "GroupStart": "14",
                 "GroupEnd": "14",
                 "CourseName": "ME1102 Tut",
-                "type": "R102"
+                "type": "R103"
             },
             {
                 "timeStart": "08:00",
@@ -851,7 +851,7 @@
                 "GroupStart": "15",
                 "GroupEnd": "15",
                 "CourseName": "ME1102 Tut",
-                "type": "R103"
+                "type": "R105"
             },
             {
                 "timeStart": "08:00",
@@ -859,7 +859,7 @@
                 "GroupStart": "16",
                 "GroupEnd": "16",
                 "CourseName": "ME1102 Tut",
-                "type": "R104"
+                "type": "R106"
             },
             {
                 "timeStart": "08:00",
@@ -867,7 +867,7 @@
                 "GroupStart": "17",
                 "GroupEnd": "17",
                 "CourseName": "ME1102 Tut",
-                "type": "R107"
+                "type": "R108"
             },
             {
                 "timeStart": "08:00",
@@ -875,7 +875,7 @@
                 "GroupStart": "18",
                 "GroupEnd": "18",
                 "CourseName": "ME1102 Tut",
-                "type": "R108"
+                "type": "R301"
             },
             {
                 "timeStart": "08:00",
@@ -883,7 +883,7 @@
                 "GroupStart": "19",
                 "GroupEnd": "19",
                 "CourseName": "ME1102 Tut",
-                "type": "R109"
+                "type": "R302"
             },
             {
                 "timeStart": "08:00",
@@ -891,7 +891,7 @@
                 "GroupStart": "20",
                 "GroupEnd": "20",
                 "CourseName": "ME1102 Tut",
-                "type": "R306"
+                "type": "R303"
             },
             {
                 "timeStart": "08:00",
@@ -907,7 +907,7 @@
                 "GroupStart": "22",
                 "GroupEnd": "22",
                 "CourseName": "ME1102 Tut",
-                "type": "R301"
+                "type": "R306"
             },
             {
                 "timeStart": "08:00",
@@ -915,7 +915,7 @@
                 "GroupStart": "23",
                 "GroupEnd": "23",
                 "CourseName": "ME1102 Tut",
-                "type": "R302"
+                "type": "R307"
             },
             {
                 "timeStart": "08:00",
@@ -923,7 +923,7 @@
                 "GroupStart": "24",
                 "GroupEnd": "24",
                 "CourseName": "ME1102 Tut",
-                "type": "R303"
+                "type": "R308"
             },
             {
                 "timeStart": "18:00",
@@ -955,7 +955,7 @@
                 "GroupStart": "4",
                 "GroupEnd": "4",
                 "CourseName": "MA1101 Tut",
-                "type": "R104"
+                "type": "R107"
             },
             {
                 "timeStart": "18:00",
@@ -963,7 +963,7 @@
                 "GroupStart": "5",
                 "GroupEnd": "5",
                 "CourseName": "MA1101 Tut",
-                "type": "R107"
+                "type": "R109"
             },
             {
                 "timeStart": "18:00",
@@ -971,7 +971,7 @@
                 "GroupStart": "6",
                 "GroupEnd": "6",
                 "CourseName": "MA1101 Tut",
-                "type": "R108"
+                "type": "R301"
             },
             {
                 "timeStart": "18:00",
@@ -979,7 +979,7 @@
                 "GroupStart": "7",
                 "GroupEnd": "7",
                 "CourseName": "MA1101 Tut",
-                "type": "R109"
+                "type": "R302"
             },
             {
                 "timeStart": "18:00",
@@ -987,7 +987,7 @@
                 "GroupStart": "8",
                 "GroupEnd": "8",
                 "CourseName": "MA1101 Tut",
-                "type": "R306"
+                "type": "R303"
             },
             {
                 "timeStart": "18:00",
@@ -1003,7 +1003,7 @@
                 "GroupStart": "10",
                 "GroupEnd": "10",
                 "CourseName": "MA1101 Tut",
-                "type": "R301"
+                "type": "R306"
             },
             {
                 "timeStart": "18:00",
@@ -1011,7 +1011,7 @@
                 "GroupStart": "11",
                 "GroupEnd": "11",
                 "CourseName": "MA1101 Tut",
-                "type": "R302"
+                "type": "R307"
             },
             {
                 "timeStart": "18:00",
@@ -1019,7 +1019,7 @@
                 "GroupStart": "12",
                 "GroupEnd": "12",
                 "CourseName": "MA1101 Tut",
-                "type": "R303"
+                "type": "R308"
             }
         ]
     },
