@@ -1165,9 +1165,97 @@
                 "timeStart": "18:00",
                 "timeEnd": "18:55",
                 "GroupStart": "1",
+                "GroupEnd": "2",
+                "CourseName": "HS1101 Tut",
+                "type": "R101"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "18:55",
+                "GroupStart": "3",
+                "GroupEnd": "4",
+                "CourseName": "HS1101 Tut",
+                "type": "R502"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "18:55",
+                "GroupStart": "5",
+                "GroupEnd": "6",
+                "CourseName": "HS1101 Tut",
+                "type": "R103"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "18:55",
+                "GroupStart": "7",
+                "GroupEnd": "8",
+                "CourseName": "HS1101 Tut",
+                "type": "R108"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "18:55",
+                "GroupStart": "9",
+                "GroupEnd": "10",
+                "CourseName": "HS1101 Tut",
+                "type": "R109"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "18:55",
+                "GroupStart": "11",
+                "GroupEnd": "12",
+                "CourseName": "HS1101 Tut",
+                "type": "R301"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "18:55",
+                "GroupStart": "13",
+                "GroupEnd": "14",
+                "CourseName": "HS1101 Tut",
+                "type": "R302"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "18:55",
+                "GroupStart": "15",
+                "GroupEnd": "16",
+                "CourseName": "HS1101 Tut",
+                "type": "R303"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "18:55",
+                "GroupStart": "17",
+                "GroupEnd": "18",
+                "CourseName": "HS1101 Tut",
+                "type": "R305"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "18:55",
+                "GroupStart": "19",
+                "GroupEnd": "20",
+                "CourseName": "HS1101 Tut",
+                "type": "R306"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "18:55",
+                "GroupStart": "21",
+                "GroupEnd": "22",
+                "CourseName": "HS1101 Tut",
+                "type": "R307"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "18:55",
+                "GroupStart": "23",
                 "GroupEnd": "24",
-                "CourseName": "HS1101",
-                "type": "PRACTICAL"
+                "CourseName": "HS1101 Tut",
+                "type": "R308"
             }
         ]
     }
