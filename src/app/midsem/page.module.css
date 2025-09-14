@@ -111,16 +111,29 @@
 
 .studentHeader {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
+    flex-direction: column;
     background-color: #1877f2;
     color: white;
 }
 
+.studentHeaderC1 {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+.studentHeaderRollNo {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
 .studentName {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 2000;
     margin: 0;
 }
 
@@ -260,16 +273,6 @@
   margin-top: auto; 
   color: #888;
   font-size: 0.9em;
-}
-
-.footer p {
-  margin: 0;
-}
-
-.taking-screenshot {
-  animation: none !important;
-  transform: none !important;
-  font-weight: 1000;
 }
 
 /* --- Responsive Design --- */

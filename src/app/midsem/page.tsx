@@ -1,90 +1,46 @@
 'use client';
 import React, { useEffect, useRef, useState } from "react";
-import nameMap from '../../lib/nameMap.json';
-import timetable from '../../lib/timetable/schedule.json';
+import nameMap from '../../../lib/nameMap.json';
 import styles from "./page.module.css";
-import { useRouter } from "next/navigation"
 import Head from "next/head";
 
 interface TimetableSlot {
   time: string;
   course: string;
-  groups: string;
+  date: string;
+  day: string;
   location: string;
 }
 
 interface Student {
   name: string;
+  rollno: string | null;
   group: number;
   timetable: TimetableSlot[];
 }
 
-type ScheduleEntry = {
-  timeStart: string;
-  timeEnd: string;
-  CourseName: string;
-  GroupStart: string;
-  GroupEnd: string;
-  type: string;
-};
-
-type WeekDay = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday';
-
-function cleanTime(a: string) {
-  let newTime = ""
-  if(a[1] == ':') {
-    newTime = "0";
-    newTime += a;
-    return newTime;
-  } else return a;
+async function getExamSchedule(selectedStudentInfo: { name: string; group: string, rollNo: string }): Promise<Student> {
+    const res = await fetch(`midsem/api?idx=${selectedStudentInfo.rollNo.toUpperCase()}`);
+    const data = await res.json()
+    console.log(data);
+    return {
+        name: selectedStudentInfo.name,
+        group: parseInt(selectedStudentInfo.group),
+        rollno: selectedStudentInfo.rollNo,
+        timetable: data.results
+    }
 }
-
-function getTimetable(schedule: ScheduleEntry[], group: number): ScheduleEntry[] {
-  const interestedCourses = schedule.filter(course => {
-    const start = parseInt(course.GroupStart, 10);
-    const end = parseInt(course.GroupEnd, 10);
-    return group >= start && group <= end && course.CourseName.toUpperCase() != "HSS";
-  });
-
-  return interestedCourses.sort((a, b) => {
-    const timeA = new Date(`1970-01-01T${cleanTime(a.timeStart)}:00`);
-    const timeB = new Date(`1970-01-01T${cleanTime(b.timeStart)}:00`);
-    return timeA.getTime() - timeB.getTime();
-  });
-}
-
-function getSchedule(schedule: ScheduleEntry[], name: string, group: string): Student {
-  const timetableSlot = schedule.map(entry => ({
-    time: `${entry.timeStart} - ${entry.timeEnd}`,
-    course: entry.CourseName,
-    groups: `${entry.GroupStart} to ${entry.GroupEnd}`,
-    location: entry.type
-  }));
-
-  return {
-    name: name,
-    group: parseInt(group),
-    timetable: timetableSlot
-  };
-}
-
 
 const TimetablePage = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isSuggestionsVisible, setSuggestionsVisible] = useState<boolean>(false);
 
-  const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: string; group: string } | null>(null);
+  const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: string; group: string, rollNo: string } | null>(null);
 
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
-  const [selectedDay, setSelectedDay] = useState<WeekDay>('monday');
-  const [isTaking, setIsTaking] = useState(false);
-  const daySelectorRef = useRef<HTMLDivElement>(null);
-  const downloadDivRef = useRef<HTMLDivElement>(null);
 
   const searchContainerRef = useRef<HTMLDivElement>(null);
-  const daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
-  const router = useRouter();
 
   useEffect(() => {
     if (searchQuery.trim().length > 0 && searchQuery !== (selectedStudentInfo?.name || '')) {
@@ -101,13 +57,14 @@ const TimetablePage = () => {
 
   useEffect(() => {
     if (selectedStudentInfo) {
-      const { name, group } = selectedStudentInfo;
-      const daySchedule = timetable[selectedDay]?.Schedule as ScheduleEntry[] || [];
-      const relevantCourses = getTimetable(daySchedule, parseInt(group));
-      const studentSchedule = getSchedule(relevantCourses, name, group);
-      setSelectedStudent(studentSchedule);
+
+    getExamSchedule(selectedStudentInfo).then(data => {
+        console.log(data);
+        setSelectedStudent(data);
+    });
+
     }
-  }, [selectedStudentInfo, selectedDay]);
+  }, [selectedStudentInfo]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -124,8 +81,8 @@ const TimetablePage = () => {
   const handleSuggestionClick = (studentName: string) => {
     setSearchQuery(studentName); // Set input text to the selected student
     const groupNo: string = nameMap[studentName as keyof typeof nameMap][0];
-    setSelectedStudentInfo({ name: studentName, group: groupNo });
-    setSelectedDay('monday'); // Reset to Monday for a new student
+    const rollNo: string = nameMap[studentName as keyof typeof nameMap][1];
+    setSelectedStudentInfo({ name: studentName, group: groupNo, rollNo: rollNo });
     setSuggestionsVisible(false);
   };
 
@@ -134,48 +91,6 @@ const TimetablePage = () => {
       setSuggestionsVisible(true);
     }
   };
-
-  const handleRouter = () => {
-    router.push('/midsem')
-  }
-
-  const handleDownload = async () => {
-    setIsTaking(true);
-
-    try {      
-      const html2canvas = (await import('html2canvas')).default;
-
-      document.body.classList.add("taking-screenshot");
-      
-      const canvas = await html2canvas(downloadDivRef.current as HTMLElement, {
-        allowTaint: true,
-        useCORS: true,
-        backgroundColor: "#ffffff",
-        scale: 2
-      });
-
-      if (canvas) {
-        // toBlob is async and better for large images
-        canvas.toBlob((blob) => {
-          if (!blob) return;
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = `timetable-${selectedDay.toLowerCase()}.png`;
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          URL.revokeObjectURL(url);
-        }, "image/jpg");
-      }
-
-    } catch(err) {
-      console.log("FAILED");
-    } finally {
-      document.body.classList.remove("taking-screenshot");
-      setIsTaking(false);
-    }
-  }
 
   return (
     <>
@@ -187,10 +102,9 @@ const TimetablePage = () => {
       <main>
         <div className={styles.pageContainer}>
           <main className={styles.mainContent}>
-            <h1 className={styles.title}>Student Timetable Finder 🗓️</h1>
+            <h1 className={styles.title}>Midsem Schedule Finder 🗓️</h1>
             <p className={styles.subtitle}>
-              Enter a student name to view their weekly schedule.
-              Click <a className={styles.routerLink} onClick={handleRouter}>here</a> to check your midsem schedule
+              Enter a student name to view their Midsem Schedule.
             </p>
 
             <div className={styles.searchContainer} ref={searchContainerRef}>
@@ -235,35 +149,30 @@ const TimetablePage = () => {
               )}
             </div>
 
-            <div ref={downloadDivRef} className={styles.downloadContainer}>
+            <div className={styles.downloadContainer}>
             {selectedStudent && (
-              <div className={styles.timetableContainer} ref={downloadDivRef}>
+              <div className={styles.timetableContainer}>
                 <div className={styles.studentHeader}>
-                  <h2 className={styles.studentName}>{selectedStudent.name}</h2>
-                  <span className={styles.studentGroup}>
-                    Group: {selectedStudent.group}
-                  </span>
-                </div>
+                    <div className={styles.studentHeaderC1}>
+                        <h2 className={styles.studentName}>{selectedStudent.name}</h2>
+                        <span className={styles.studentGroup}>
+                            Group: {selectedStudent.group}
+                        </span>
 
-                <div className={styles.daySelector} ref={daySelectorRef}>
-                  {daysOfWeek.map(day => (
-                    <button
-                      key={day}
-                      onClick={() => setSelectedDay(day as WeekDay)}
-                      className={`${styles.dayButton} ${selectedDay === day ? styles.active : ''}`}
-                    >
-                      {day.charAt(0).toUpperCase() + day.slice(1)}
-                    </button>
-                  ))}
-                </div>
+                    </div>
+                    <div className={styles.studentHeaderRollNo}>
+                        <span>Roll No: {selectedStudent.rollno}</span>
+                    </div>
+                  </div>
 
                 <div className={styles.tableWrapper}>
                   <table className={styles.timetable}>
                     <thead>
                       <tr>
+                        <th>Date</th>
+                        <th>Day</th>
                         <th>Time</th>
                         <th>Course</th>
-                        <th>Groups</th>
                         <th>Location</th>
                       </tr>
                     </thead>
@@ -271,9 +180,10 @@ const TimetablePage = () => {
                       {selectedStudent.timetable.length > 0 ? (
                         selectedStudent.timetable.map((slot, idx) => (
                           <tr key={idx}>
+                            <td>{slot.date}</td>
+                            <td>{slot.day}</td>
                             <td>{slot.time}</td>
                             <td>{slot.course}</td>
-                            <td>{slot.groups}</td>
                             <td>{slot.location}</td>
                           </tr>
                         ))
@@ -289,12 +199,7 @@ const TimetablePage = () => {
             )}
             </div>
 
-            {/* <button onClick={handleDownload}>Download</button> */}
           </main>
-
-          <footer className={styles.footer}>
-            <p>Made with ❤️ by Ajitesh (AI&DS)</p>
-          </footer>
 
         </div>
       </main>
