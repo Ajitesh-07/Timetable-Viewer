@@ -22,7 +22,6 @@ interface Student {
 async function getExamSchedule(selectedStudentInfo: { name: String; group: String, rollNo: String }): Promise<Student> {
     const res = await fetch(`midsem/api?idx=${selectedStudentInfo.rollNo.toUpperCase()}`);
     const data = await res.json()
-    console.log(data);
     return {
         name: selectedStudentInfo.name,
         group: parseInt(selectedStudentInfo.group.toString()),
@@ -59,7 +58,6 @@ const TimetablePage = () => {
     if (selectedStudentInfo) {
 
     getExamSchedule(selectedStudentInfo).then(data => {
-        console.log(data);
         setSelectedStudent(data);
     });
 
