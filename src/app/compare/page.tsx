@@ -81,7 +81,7 @@ export default function ScheduleComparer() {
             .filter(([key]) => key.toLowerCase().includes(term.toLowerCase()))
             .map(([key, index]) => ({
                 name: key,
-                group: parseInt(index)
+                group: parseInt(index[0])
             }));
 
         setSearchResults(searchRes as Student[]);
