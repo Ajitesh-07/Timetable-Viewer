@@ -34,6 +34,7 @@ const TimetablePage = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isSuggestionsVisible, setSuggestionsVisible] = useState<boolean>(false);
+  const [isLoadingData, setIsLoadingData] = useState<boolean>(false);
 
   const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: string; group: string, rollNo: string } | null>(null);
 
@@ -55,13 +56,25 @@ const TimetablePage = () => {
   }, [searchQuery, selectedStudentInfo]);
 
   useEffect(() => {
-    if (selectedStudentInfo) {
+    if (!selectedStudentInfo) return;
 
-    getExamSchedule(selectedStudentInfo).then(data => {
+    let mounted = true;
+    setIsLoadingData(true);
+
+    (async () => {
+      try {
+        const data = await getExamSchedule(selectedStudentInfo);
+        if (!mounted) return;
         setSelectedStudent(data);
-    });
+      } catch (err) {
+        console.error("Error fetching timetable:", err);
+        if (mounted) setSelectedStudent(null);
+      } finally {
+        if (mounted) setIsLoadingData(false);
+      }
+    })();
 
-    }
+    return () => { mounted = false; };
   }, [selectedStudentInfo]);
 
   useEffect(() => {
@@ -148,53 +161,58 @@ const TimetablePage = () => {
             </div>
 
             <div className={styles.downloadContainer}>
-            {selectedStudent && (
-              <div className={styles.timetableContainer}>
-                <div className={styles.studentHeader}>
+              {(selectedStudent || isLoadingData) && (
+                <div className={styles.timetableContainer}>
+                  <div className={styles.studentHeader}>
                     <div className={styles.studentHeaderC1}>
-                        <h2 className={styles.studentName}>{selectedStudent.name}</h2>
-                        <span className={styles.studentGroup}>
-                            Group: {selectedStudent.group}
-                        </span>
-
+                      <h2 className={styles.studentName}>
+                        {selectedStudent?.name ?? selectedStudentInfo?.name}
+                      </h2>
+                      <span className={styles.studentGroup}>
+                        Group: {selectedStudent?.group ?? selectedStudentInfo?.group}
+                      </span>
                     </div>
                     <div className={styles.studentHeaderRollNo}>
-                        <span>Roll No: {selectedStudent.rollno}</span>
+                      <span>Roll No: {selectedStudent?.rollno ?? selectedStudentInfo?.rollNo}</span>
                     </div>
                   </div>
 
-                <div className={styles.tableWrapper}>
-                  <table className={styles.timetable}>
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Day</th>
-                        <th>Time</th>
-                        <th>Course</th>
-                        <th>Location</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {selectedStudent.timetable.length > 0 ? (
-                        selectedStudent.timetable.map((slot, idx) => (
-                          <tr key={idx}>
-                            <td>{slot.date}</td>
-                            <td>{slot.day}</td>
-                            <td>{slot.time}</td>
-                            <td>{slot.course}</td>
-                            <td>{slot.location}</td>
-                          </tr>
-                        ))
-                      ) : (
+                  <div className={styles.tableWrapper}>
+                    <table className={styles.timetable}>
+                      <thead>
                         <tr>
-                          <td colSpan={4} className={styles.noClassesCell}>No classes scheduled for today. ✨</td>
+                          <th>Date</th>
+                          <th>Day</th>
+                          <th>Time</th>
+                          <th>Course</th>
+                          <th>Location</th>
                         </tr>
-                      )}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {isLoadingData ? (
+                          <tr>
+                            <td colSpan={5} className={styles.noClassesCell}>Loading Data</td>
+                          </tr>
+                        ) : selectedStudent && selectedStudent.timetable.length > 0 ? (
+                          selectedStudent.timetable.map((slot, idx) => (
+                            <tr key={idx}>
+                              <td>{slot.date}</td>
+                              <td>{slot.day}</td>
+                              <td>{slot.time}</td>
+                              <td>{slot.course}</td>
+                              <td>{slot.location}</td>
+                            </tr>
+                          ))
+                        ) : (
+                          <tr>
+                            <td colSpan={5} className={styles.noClassesCell}>No classes scheduled for today. ✨</td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
             </div>
 
           </main>
