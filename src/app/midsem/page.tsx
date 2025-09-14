@@ -5,38 +5,38 @@ import styles from "./page.module.css";
 import Head from "next/head";
 
 interface TimetableSlot {
-  time: string;
-  course: string;
-  date: string;
-  day: string;
-  location: string;
+  time: String;
+  course: String;
+  date: String;
+  day: String;
+  location: String;
 }
 
 interface Student {
-  name: string;
-  rollno: string | null;
+  name: String;
+  rollno: String;
   group: number;
   timetable: TimetableSlot[];
 }
 
-async function getExamSchedule(selectedStudentInfo: { name: string; group: string, rollNo: string }): Promise<Student> {
+async function getExamSchedule(selectedStudentInfo: { name: String; group: String, rollNo: String }): Promise<Student> {
     const res = await fetch(`midsem/api?idx=${selectedStudentInfo.rollNo.toUpperCase()}`);
     const data = await res.json()
     console.log(data);
     return {
         name: selectedStudentInfo.name,
-        group: parseInt(selectedStudentInfo.group),
+        group: parseInt(selectedStudentInfo.group.toString()),
         rollno: selectedStudentInfo.rollNo,
         timetable: data.results
     }
 }
 
 const TimetablePage = () => {
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState<String>('');
+  const [suggestions, setSuggestions] = useState<String[]>([]);
   const [isSuggestionsVisible, setSuggestionsVisible] = useState<boolean>(false);
 
-  const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: string; group: string, rollNo: string } | null>(null);
+  const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: String; group: String, rollNo: String } | null>(null);
 
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
 
@@ -78,10 +78,10 @@ const TimetablePage = () => {
     };
   }, []);
 
-  const handleSuggestionClick = (studentName: string) => {
+  const handleSuggestionClick = (studentName: String) => {
     setSearchQuery(studentName); // Set input text to the selected student
-    const groupNo: string = nameMap[studentName as keyof typeof nameMap][0];
-    const rollNo: string = nameMap[studentName as keyof typeof nameMap][1];
+    const groupNo: String = nameMap[studentName as keyof typeof nameMap][0];
+    const rollNo: String = nameMap[studentName as keyof typeof nameMap][1];
     setSelectedStudentInfo({ name: studentName, group: groupNo, rollNo: rollNo });
     setSuggestionsVisible(false);
   };
@@ -126,7 +126,7 @@ const TimetablePage = () => {
                 </svg>
                 <input
                   type="text"
-                  value={searchQuery}
+                  value={searchQuery.toString()}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={handleSearchFocus}
                   placeholder="Ex Aditya"
@@ -138,7 +138,7 @@ const TimetablePage = () => {
                 <ul className={styles.suggestionsList}>
                   {suggestions.map((student) => (
                     <li
-                      key={student}
+                      key={student.toString()}
                       onClick={() => handleSuggestionClick(student)}
                       className={styles.suggestionItem}
                     >
