@@ -5,20 +5,20 @@ import path from 'path';
 export const runtime = 'nodejs'; // important: allow fs access
 
 interface Slot {
-    date: String,
-    day: String,
-    shift: String,
-    roomno: String,
+    date: string,
+    day: string,
+    shift: string,
+    roomno: string,
     coursecode: string,
-    rollnolist: String[]
+    rollnolist: string[]
 }
 
 interface ReturnSlot {
-    date: String,
-    day: String,
-    time: String,
-    course: String,
-    location: String,
+    date: string,
+    day: string,
+    time: string,
+    course: string,
+    location: string,
 }
 
 let indexCache: Slot[] | null = null;
