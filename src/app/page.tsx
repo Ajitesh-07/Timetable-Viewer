@@ -28,6 +28,14 @@ type ScheduleEntry = {
   type: string;
 };
 
+interface SpecialEntry {
+  timeStart: string;
+  timeEnd: string;
+  names: string[];
+  CourseName: string;
+  type: string;
+}
+
 type WeekDay = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday';
 
 function cleanTime(a: string) {
@@ -39,14 +47,29 @@ function cleanTime(a: string) {
   } else return a;
 }
 
-function getTimetable(schedule: ScheduleEntry[], group: number): ScheduleEntry[] {
+function getTimetable(schedule: ScheduleEntry[], specialSchedule: SpecialEntry[], group: number, name: string): ScheduleEntry[] {
   const interestedCourses = schedule.filter(course => {
     const start = parseInt(course.GroupStart, 10);
     const end = parseInt(course.GroupEnd, 10);
     return group >= start && group <= end && course.CourseName.toUpperCase() != "HSS";
   });
+  
+  const intrestedSpecials = specialSchedule.filter(course => {
+    return course.names.includes(name);
+  });
 
-  return interestedCourses.sort((a, b) => {
+  const mappedSpecials: ScheduleEntry[] = intrestedSpecials.map(course => ({
+      timeStart: course.timeStart,
+      timeEnd: course.timeEnd,
+      CourseName: course.CourseName,
+      type: course.type,
+      GroupStart: "SPECIAL",
+      GroupEnd: "SPECIAL", 
+  }));
+
+  const allCourses = [...interestedCourses, ...mappedSpecials];
+
+  return allCourses.sort((a, b) => {
     const timeA = new Date(`1970-01-01T${cleanTime(a.timeStart)}:00`);
     const timeB = new Date(`1970-01-01T${cleanTime(b.timeStart)}:00`);
     return timeA.getTime() - timeB.getTime();
@@ -57,7 +80,9 @@ function getSchedule(schedule: ScheduleEntry[], name: string, group: string): St
   const timetableSlot = schedule.map(entry => ({
     time: `${entry.timeStart} - ${entry.timeEnd}`,
     course: entry.CourseName,
-    groups: `${entry.GroupStart} to ${entry.GroupEnd}`,
+    groups: (entry.GroupStart === "SPECIAL") 
+            ? "Special" 
+            : `${entry.GroupStart} to ${entry.GroupEnd}`,
     location: entry.type
   }));
 
@@ -78,7 +103,6 @@ const TimetablePage = () => {
 
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [selectedDay, setSelectedDay] = useState<WeekDay>('monday');
-  const [isTaking, setIsTaking] = useState(false);
   const daySelectorRef = useRef<HTMLDivElement>(null);
   const downloadDivRef = useRef<HTMLDivElement>(null);
 
@@ -103,7 +127,8 @@ const TimetablePage = () => {
     if (selectedStudentInfo) {
       const { name, group } = selectedStudentInfo;
       const daySchedule = timetable[selectedDay]?.Schedule as ScheduleEntry[] || [];
-      const relevantCourses = getTimetable(daySchedule, parseInt(group));
+      const specialSchedule = timetable[selectedDay]?.Special as SpecialEntry[] || [];
+      const relevantCourses = getTimetable(daySchedule, specialSchedule, parseInt(group), name);
       const studentSchedule = getSchedule(relevantCourses, name, group);
       setSelectedStudent(studentSchedule);
     }
@@ -136,45 +161,7 @@ const TimetablePage = () => {
   };
 
   const handleRouter = () => {
-    router.push('/midsem')
-  }
-
-  const handleDownload = async () => {
-    setIsTaking(true);
-
-    try {      
-      const html2canvas = (await import('html2canvas')).default;
-
-      document.body.classList.add("taking-screenshot");
-      
-      const canvas = await html2canvas(downloadDivRef.current as HTMLElement, {
-        allowTaint: true,
-        useCORS: true,
-        backgroundColor: "#ffffff",
-        scale: 2
-      });
-
-      if (canvas) {
-        // toBlob is async and better for large images
-        canvas.toBlob((blob) => {
-          if (!blob) return;
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = `timetable-${selectedDay.toLowerCase()}.png`;
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          URL.revokeObjectURL(url);
-        }, "image/jpg");
-      }
-
-    } catch(err) {
-      console.log("FAILED");
-    } finally {
-      document.body.classList.remove("taking-screenshot");
-      setIsTaking(false);
-    }
+    router.push('/compare')
   }
 
   return (
@@ -190,7 +177,7 @@ const TimetablePage = () => {
             <h1 className={styles.title}>Student Timetable Finder 🗓️</h1>
             <p className={styles.subtitle}>
               Enter a student name to view their weekly schedule.
-              Click <a className={styles.routerLink} onClick={handleRouter}>here</a> to check your midsem schedule
+              Click <a className={styles.routerLink} onClick={handleRouter}>here</a> to see if u and ur friend have a common class
             </p>
 
             <div className={styles.searchContainer} ref={searchContainerRef}>

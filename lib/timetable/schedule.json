@@ -225,7 +225,8 @@
                 "CourseName": "PH1101 Tut",
                 "type": "R308"
             }
-        ]
+        ],
+        "Special": []
     },
     "monday": {
         "Schedule": [
@@ -437,7 +438,8 @@
                 "CourseName": "MA1101 Tut",
                 "type": "R308"
             }
-        ]
+        ],
+        "Special": []
     },
     "thursday": {
         "Schedule": [
@@ -681,7 +683,8 @@
                 "CourseName": "CH1101 Tut",
                 "type": "R308"
             }
-        ]
+        ],
+        "Special": []
     },
     "tuesday": {
         "Schedule": [
@@ -1021,6 +1024,16 @@
                 "CourseName": "MA1101 Tut",
                 "type": "R308"
             }
+        ],
+        "Special": [
+            {
+                "timeStart": "14:30",
+                "timeEnd": "15:10",
+                "names": ["Nandini"],
+                "CourseName": "NSS",
+                "type": "Ragaopur 9th B"
+
+            }
         ]
     },
     "wednesday": {
@@ -1257,6 +1270,7 @@
                 "CourseName": "HS1101 Tut",
                 "type": "R308"
             }
-        ]
+        ],
+        "Special": []
     }
 }
