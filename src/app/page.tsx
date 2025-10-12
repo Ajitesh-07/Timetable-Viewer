@@ -95,6 +95,12 @@ function getSchedule(schedule: ScheduleEntry[], name: string, group: string): St
 
 
 const TimetablePage = () => {
+  const d = new Date();
+  const daysOfWeek: WeekDay[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+  const dayNumber = d.getDay();
+  let dayName: WeekDay = 'monday';
+  if (dayNumber < 5 && dayNumber > 0) dayName = daysOfWeek[dayNumber-1];
+
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isSuggestionsVisible, setSuggestionsVisible] = useState<boolean>(false);
@@ -102,12 +108,11 @@ const TimetablePage = () => {
   const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: string; group: string } | null>(null);
 
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
-  const [selectedDay, setSelectedDay] = useState<WeekDay>('monday');
+  const [selectedDay, setSelectedDay] = useState<WeekDay>(dayName);
   const daySelectorRef = useRef<HTMLDivElement>(null);
   const downloadDivRef = useRef<HTMLDivElement>(null);
 
   const searchContainerRef = useRef<HTMLDivElement>(null);
-  const daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
   const router = useRouter();
 
   useEffect(() => {
@@ -150,7 +155,7 @@ const TimetablePage = () => {
     setSearchQuery(studentName); // Set input text to the selected student
     const groupNo: string = nameMap[studentName as keyof typeof nameMap][0];
     setSelectedStudentInfo({ name: studentName, group: groupNo });
-    setSelectedDay('monday'); // Reset to Monday for a new student
+    setSelectedDay(dayName); // Reset to Monday for a new student
     setSuggestionsVisible(false);
   };
 
