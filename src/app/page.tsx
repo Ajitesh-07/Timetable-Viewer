@@ -166,7 +166,7 @@ const TimetablePage = () => {
   };
 
   const handleRouter = () => {
-    router.push('/compare')
+    router.push('/endsem')
   }
 
   return (
@@ -182,7 +182,7 @@ const TimetablePage = () => {
             <h1 className={styles.title}>Student Timetable Finder 🗓️</h1>
             <p className={styles.subtitle}>
               Enter a student name to view their weekly schedule.
-              Click <a className={styles.routerLink} onClick={handleRouter}>here</a> to see if u and ur friend have a common class
+              Click <a className={styles.routerLink} onClick={handleRouter}>here</a> to check your ENDSEM schedule
             </p>
 
             <div className={styles.searchContainer} ref={searchContainerRef}>
