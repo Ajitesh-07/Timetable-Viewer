@@ -29,9 +29,16 @@ function sortReturnSlots(slots: ReturnSlot[]): ReturnSlot[] {
 
 function parseDate(dateString: string): Date {
     const [day, month, year] = dateString.split('-').map(Number);
-    // Note: Month is 0-indexed in JS Date (0 = Jan, 11 = Dec), so we subtract 1.
     return new Date(year, month - 1, day);
 }
+
+function toLowercaseExceptFirst(str: string): string {
+  if (!str) {
+    return "";
+  }
+  return str.charAt(0) + str.slice(1).toLowerCase();
+}
+
 
 let indexCache: Slot[] | null = null;
 
@@ -57,7 +64,7 @@ export async function GET(request: NextRequest) {
         if (slot.rollnolist.includes(rollno)) {
             results.push({
                 date: slot.date,
-                day: slot.day,
+                day: toLowercaseExceptFirst(slot.day),
                 time: (slot.shift == 'Morning') ? "10:30 - 12:30" : "15:30 - 17:30",
                 course: slot.coursecode,
                 location: slot.roomno
