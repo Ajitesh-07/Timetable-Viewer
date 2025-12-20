@@ -131,6 +131,7 @@
             }
         ]
     },
+
     "tuesday": {
         "Schedule": [
             {
@@ -205,18 +206,14 @@
                 "CourseName": "CE1201",
                 "type": "CLH-LT103"
             },
-            { "timeStart": "14:00", "timeEnd": "14:55", "GroupStart": "1", "GroupEnd": "1", "CourseName": "ME1202 Tut", "type": "R101" },
-            { "timeStart": "14:00", "timeEnd": "14:55", "GroupStart": "2", "GroupEnd": "2", "CourseName": "ME1202 Tut", "type": "R102" },
-            { "timeStart": "14:00", "timeEnd": "14:55", "GroupStart": "3", "GroupEnd": "3", "CourseName": "ME1202 Tut", "type": "R103" },
-            { "timeStart": "14:00", "timeEnd": "14:55", "GroupStart": "4", "GroupEnd": "4", "CourseName": "ME1202 Tut", "type": "R104" },
-            { "timeStart": "14:00", "timeEnd": "14:55", "GroupStart": "5", "GroupEnd": "5", "CourseName": "ME1202 Tut", "type": "R105" },
-            { "timeStart": "14:00", "timeEnd": "14:55", "GroupStart": "6", "GroupEnd": "6", "CourseName": "ME1202 Tut", "type": "R106" },
-            { "timeStart": "14:00", "timeEnd": "14:55", "GroupStart": "7", "GroupEnd": "7", "CourseName": "ME1202 Tut", "type": "R107" },
-            { "timeStart": "14:00", "timeEnd": "14:55", "GroupStart": "8", "GroupEnd": "8", "CourseName": "ME1202 Tut", "type": "R108" },
-            { "timeStart": "14:00", "timeEnd": "14:55", "GroupStart": "9", "GroupEnd": "9", "CourseName": "ME1202 Tut", "type": "R109" },
-            { "timeStart": "14:00", "timeEnd": "14:55", "GroupStart": "10", "GroupEnd": "10", "CourseName": "ME1202 Tut", "type": "R110" },
-            { "timeStart": "14:00", "timeEnd": "14:55", "GroupStart": "11", "GroupEnd": "11", "CourseName": "ME1202 Tut", "type": "R205" },
-            { "timeStart": "14:00", "timeEnd": "14:55", "GroupStart": "12", "GroupEnd": "12", "CourseName": "ME1202 Tut", "type": "R301" },
+            {
+                "timeStart": "14:00",
+                "timeEnd": "14:55",
+                "GroupStart": "1",
+                "GroupEnd": "12",
+                "CourseName": "ME 1202 TUT",
+                "type": "LAB SLOT"
+            },
             {
                 "timeStart": "15:00",
                 "timeEnd": "17:55",
@@ -244,39 +241,16 @@
             {
                 "timeStart": "18:00",
                 "timeEnd": "19:30",
-                "GroupStart": "1",
-                "GroupEnd": "24",
+                "GroupStart": "",
+                "GroupEnd": "",
                 "CourseName": "IK6201",
                 "type": "CLH-LT003"
             }
         ]
     },
+
     "wednesday": {
         "Schedule": [
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "1", "GroupEnd": "1", "CourseName": "MA1201 Tut", "type": "R101" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "2", "GroupEnd": "2", "CourseName": "MA1201 Tut", "type": "R102" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "3", "GroupEnd": "3", "CourseName": "MA1201 Tut", "type": "R103" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "4", "GroupEnd": "4", "CourseName": "MA1201 Tut", "type": "R104" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "5", "GroupEnd": "5", "CourseName": "MA1201 Tut", "type": "R105" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "6", "GroupEnd": "6", "CourseName": "MA1201 Tut", "type": "R106" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "7", "GroupEnd": "7", "CourseName": "MA1201 Tut", "type": "R107" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "8", "GroupEnd": "8", "CourseName": "MA1201 Tut", "type": "R108" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "9", "GroupEnd": "9", "CourseName": "MA1201 Tut", "type": "R109" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "10", "GroupEnd": "10", "CourseName": "MA1201 Tut", "type": "R110" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "11", "GroupEnd": "11", "CourseName": "MA1201 Tut", "type": "R205" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "12", "GroupEnd": "12", "CourseName": "MA1201 Tut", "type": "R301" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "13", "GroupEnd": "13", "CourseName": "MA1201 Tut", "type": "R302" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "14", "GroupEnd": "14", "CourseName": "MA1201 Tut", "type": "R303" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "15", "GroupEnd": "15", "CourseName": "MA1201 Tut", "type": "R304" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "16", "GroupEnd": "16", "CourseName": "MA1201 Tut", "type": "R305" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "17", "GroupEnd": "17", "CourseName": "MA1201 Tut", "type": "R306" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "18", "GroupEnd": "18", "CourseName": "MA1201 Tut", "type": "R307" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "19", "GroupEnd": "19", "CourseName": "MA1201 Tut", "type": "R308" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "20", "GroupEnd": "20", "CourseName": "MA1201 Tut", "type": "R309" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "21", "GroupEnd": "21", "CourseName": "MA1201 Tut", "type": "R310" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "22", "GroupEnd": "22", "CourseName": "MA1201 Tut", "type": "R409" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "23", "GroupEnd": "23", "CourseName": "MA1201 Tut", "type": "R501" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "24", "GroupEnd": "24", "CourseName": "MA1201 Tut", "type": "R502" },
             {
                 "timeStart": "09:00",
                 "timeEnd": "09:55",
@@ -392,39 +366,16 @@
             {
                 "timeStart": "18:00",
                 "timeEnd": "19:30",
-                "GroupStart": "1",
-                "GroupEnd": "24",
+                "GroupStart": "",
+                "GroupEnd": "",
                 "CourseName": "IK1201",
                 "type": "CLH-LT003"
             }
         ]
     },
+
     "thursday": {
         "Schedule": [
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "1", "GroupEnd": "1", "CourseName": "CH1201 Tut", "type": "R101" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "2", "GroupEnd": "2", "CourseName": "CH1201 Tut", "type": "R102" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "3", "GroupEnd": "3", "CourseName": "CH1201 Tut", "type": "R103" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "4", "GroupEnd": "4", "CourseName": "CH1201 Tut", "type": "R104" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "5", "GroupEnd": "5", "CourseName": "CH1201 Tut", "type": "R105" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "6", "GroupEnd": "6", "CourseName": "CH1201 Tut", "type": "R106" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "7", "GroupEnd": "7", "CourseName": "CH1201 Tut", "type": "R107" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "8", "GroupEnd": "8", "CourseName": "CH1201 Tut", "type": "R108" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "9", "GroupEnd": "9", "CourseName": "CH1201 Tut", "type": "R109" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "10", "GroupEnd": "10", "CourseName": "CH1201 Tut", "type": "R110" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "11", "GroupEnd": "11", "CourseName": "CH1201 Tut", "type": "R205" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "12", "GroupEnd": "12", "CourseName": "CH1201 Tut", "type": "R301" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "13", "GroupEnd": "13", "CourseName": "PH1201 Tut", "type": "R302" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "14", "GroupEnd": "14", "CourseName": "PH1201 Tut", "type": "R303" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "15", "GroupEnd": "15", "CourseName": "PH1201 Tut", "type": "R304" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "16", "GroupEnd": "16", "CourseName": "PH1201 Tut", "type": "R305" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "17", "GroupEnd": "17", "CourseName": "PH1201 Tut", "type": "R306" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "18", "GroupEnd": "18", "CourseName": "PH1201 Tut", "type": "R307" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "19", "GroupEnd": "19", "CourseName": "PH1201 Tut", "type": "R308" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "20", "GroupEnd": "20", "CourseName": "PH1201 Tut", "type": "R309" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "21", "GroupEnd": "21", "CourseName": "PH1201 Tut", "type": "R310" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "22", "GroupEnd": "22", "CourseName": "PH1201 Tut", "type": "R409" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "23", "GroupEnd": "23", "CourseName": "PH1201 Tut", "type": "R501" },
-            { "timeStart": "08:00", "timeEnd": "08:55", "GroupStart": "24", "GroupEnd": "24", "CourseName": "PH1201 Tut", "type": "R502" },
             {
                 "timeStart": "09:00",
                 "timeEnd": "09:55",
@@ -532,13 +483,14 @@
             {
                 "timeStart": "18:00",
                 "timeEnd": "19:30",
-                "GroupStart": "1",
-                "GroupEnd": "24",
+                "GroupStart": "",
+                "GroupEnd": "",
                 "CourseName": "IK1201",
                 "type": "CLH-LT003"
             }
         ]
     },
+
     "friday": {
         "Schedule": [
             {
@@ -664,8 +616,8 @@
             {
                 "timeStart": "18:00",
                 "timeEnd": "19:30",
-                "GroupStart": "1",
-                "GroupEnd": "24",
+                "GroupStart": "",
+                "GroupEnd": "",
                 "CourseName": "IK6201",
                 "type": "CLH-LT003"
             }
