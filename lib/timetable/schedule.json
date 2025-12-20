@@ -128,7 +128,16 @@
                 "GroupEnd": "16",
                 "CourseName": "CS1201",
                 "type": "CLH-LT003"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "19:30",
+                "GroupStart": "1",
+                "GroupEnd": "24",
+                "CourseName": "IK6201",
+                "type": "CLH-LT003/LT103"
             }
+
         ],
         "Special": []
     },
@@ -192,7 +201,7 @@
             },
             {
                 "timeStart": "14:00",
-                "timeEnd": "15:55",
+                "timeEnd": "16:55",
                 "GroupStart": "19",
                 "GroupEnd": "24",
                 "CourseName": "CE1201",
@@ -200,7 +209,7 @@
             },
             {
                 "timeStart": "14:00",
-                "timeEnd": "15:55",
+                "timeEnd": "16:55",
                 "GroupStart": "13",
                 "GroupEnd": "18",
                 "CourseName": "CE1201",
@@ -235,8 +244,8 @@
                 "type": "LAB SLOT"
             },
             {
-                "timeStart": "16:00",
-                "timeEnd": "16:55",
+                "timeStart": "17:00",
+                "timeEnd": "17:55",
                 "GroupStart": "17",
                 "GroupEnd": "24",
                 "CourseName": "CS1201",
@@ -656,6 +665,14 @@
                 "GroupEnd": "12",
                 "CourseName": "CH1201",
                 "type": "CLH-LT103"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "19:30",
+                "GroupStart": "1",
+                "GroupEnd": "24",
+                "CourseName": "IK6201",
+                "type": "CLH-LT003/LT103"
             }
         ],
         "Special": []
