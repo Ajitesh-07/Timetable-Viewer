@@ -129,7 +129,8 @@
                 "CourseName": "CS1201",
                 "type": "CLH-LT003"
             }
-        ]
+        ],
+        "Special": []
     },
     "tuesday": {
         "Schedule": [
@@ -241,7 +242,8 @@
                 "CourseName": "CS1201",
                 "type": "CLH-LT103"
             }
-        ]
+        ],
+        "Special": []
     },
     "wednesday": {
         "Schedule": [
@@ -389,7 +391,8 @@
                 "CourseName": "IK1201",
                 "type": "CLH-LT003/LT103"
             }
-        ]
+        ],
+        "Special": []
     },
     "thursday": {
         "Schedule": [
@@ -529,7 +532,8 @@
                 "CourseName": "IK1201",
                 "type": "CLH-LT003/LT103"
             }
-        ]
+        ],
+        "Special": []
     },
     "friday": {
         "Schedule": [
@@ -653,6 +657,7 @@
                 "CourseName": "CH1201",
                 "type": "CLH-LT103"
             }
-        ]
+        ],
+        "Special": []
     }
 }
