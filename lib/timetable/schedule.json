@@ -201,14 +201,6 @@
                 "type": "CLH-LT003"
             },
             {
-                "timeStart": "10:00",
-                "timeEnd": "10:55",
-                "GroupStart": "19",
-                "GroupEnd": "24",
-                "CourseName": "CE1201",
-                "type": "CLH-LT103"
-            },
-            {
                 "timeStart": "11:00",
                 "timeEnd": "11:55",
                 "GroupStart": "9",
