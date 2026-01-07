@@ -40,11 +40,21 @@ type WeekDay = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday';
 
 function cleanTime(a: string) {
   let newTime = ""
-  if(a[1] == ':') {
+  if (a[1] == ':') {
     newTime = "0";
     newTime += a;
     return newTime;
   } else return a;
+}
+
+function formatTo12Hour(time: string): string {
+  if (!time) return "";
+  const [h, m] = time.split(':');
+  let hours = parseInt(h, 10);
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  return `${hours}:${m} ${ampm}`;
 }
 
 function getTimetable(schedule: ScheduleEntry[], specialSchedule: SpecialEntry[], group: number, name: string): ScheduleEntry[] {
@@ -53,18 +63,18 @@ function getTimetable(schedule: ScheduleEntry[], specialSchedule: SpecialEntry[]
     const end = parseInt(course.GroupEnd, 10);
     return group >= start && group <= end && course.CourseName.toUpperCase() != "HSS";
   });
-  
+
   const intrestedSpecials = specialSchedule.filter(course => {
     return course.names.includes(name);
   });
 
   const mappedSpecials: ScheduleEntry[] = intrestedSpecials.map(course => ({
-      timeStart: course.timeStart,
-      timeEnd: course.timeEnd,
-      CourseName: course.CourseName,
-      type: course.type,
-      GroupStart: "SPECIAL",
-      GroupEnd: "SPECIAL", 
+    timeStart: course.timeStart,
+    timeEnd: course.timeEnd,
+    CourseName: course.CourseName,
+    type: course.type,
+    GroupStart: "SPECIAL",
+    GroupEnd: "SPECIAL",
   }));
 
   const allCourses = [...interestedCourses, ...mappedSpecials];
@@ -78,11 +88,12 @@ function getTimetable(schedule: ScheduleEntry[], specialSchedule: SpecialEntry[]
 
 function getSchedule(schedule: ScheduleEntry[], name: string, group: string): Student {
   const timetableSlot = schedule.map(entry => ({
-    time: `${entry.timeStart} - ${entry.timeEnd}`,
+    // Updated to use the 12-hour format helper
+    time: `${formatTo12Hour(entry.timeStart)} - ${formatTo12Hour(entry.timeEnd)}`,
     course: entry.CourseName,
-    groups: (entry.GroupStart === "SPECIAL") 
-            ? "Special" 
-            : `${entry.GroupStart} to ${entry.GroupEnd}`,
+    groups: (entry.GroupStart === "SPECIAL")
+      ? "Special"
+      : `${entry.GroupStart} to ${entry.GroupEnd}`,
     location: entry.type
   }));
 
@@ -93,28 +104,28 @@ function getSchedule(schedule: ScheduleEntry[], name: string, group: string): St
   };
 }
 
-
 const TimetablePage = () => {
   const d = new Date();
   const daysOfWeek: WeekDay[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
   const dayNumber = d.getDay();
   let dayName: WeekDay = 'monday';
-  if (dayNumber < 5 && dayNumber > 0) dayName = daysOfWeek[dayNumber-1];
+  if (dayNumber < 5 && dayNumber > 0) dayName = daysOfWeek[dayNumber - 1];
 
+  // State
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isSuggestionsVisible, setSuggestionsVisible] = useState<boolean>(false);
-
   const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: string; group: string } | null>(null);
-
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [selectedDay, setSelectedDay] = useState<WeekDay>(dayName);
+
+  // Refs
   const daySelectorRef = useRef<HTMLDivElement>(null);
   const downloadDivRef = useRef<HTMLDivElement>(null);
-
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
+  // Search Logic
   useEffect(() => {
     if (searchQuery.trim().length > 0 && searchQuery !== (selectedStudentInfo?.name || '')) {
       const filtered = Object.keys(nameMap).filter(student =>
@@ -128,11 +139,16 @@ const TimetablePage = () => {
     }
   }, [searchQuery, selectedStudentInfo]);
 
+  // Schedule Update Logic
   useEffect(() => {
     if (selectedStudentInfo) {
       const { name, group } = selectedStudentInfo;
-      const daySchedule = timetable[selectedDay]?.Schedule as ScheduleEntry[] || [];
-      const specialSchedule = timetable[selectedDay]?.Special as SpecialEntry[] || [];
+      const daySchedule = timetable[selectedDay as keyof typeof timetable]?.Schedule as ScheduleEntry[] || [];
+      const specialSchedule = timetable[selectedDay as keyof typeof timetable]?.Special as SpecialEntry[] || [];
+      
+      // Fallback for missing data
+      if (!daySchedule && !specialSchedule) return;
+
       const relevantCourses = getTimetable(daySchedule, specialSchedule, parseInt(group), name);
       const studentSchedule = getSchedule(relevantCourses, name, group);
       setSelectedStudent(studentSchedule);
@@ -152,10 +168,10 @@ const TimetablePage = () => {
   }, []);
 
   const handleSuggestionClick = (studentName: string) => {
-    setSearchQuery(studentName); // Set input text to the selected student
+    setSearchQuery(studentName);
     const groupNo: string = nameMap[studentName as keyof typeof nameMap][0];
     setSelectedStudentInfo({ name: studentName, group: groupNo });
-    setSelectedDay(dayName); // Reset to Monday for a new student
+    setSelectedDay(dayName);
     setSuggestionsVisible(false);
   };
 
@@ -173,11 +189,12 @@ const TimetablePage = () => {
     <>
       <Head>
         <title>Timetable finder</title>
-        <meta name="description" content="This is the homepage of my awesome site" />
+        <meta name="description" content="Find your weekly student timetable" />
       </Head>
 
       <main>
-        <div className={styles.pageContainer}>
+        <div className={`${styles.pageContainer}`}>
+
           <main className={styles.mainContent}>
             <h1 className={styles.title}>Student Timetable Finder 🗓️</h1>
             <p className={styles.subtitle}>
@@ -228,60 +245,58 @@ const TimetablePage = () => {
             </div>
 
             <div ref={downloadDivRef} className={styles.downloadContainer}>
-            {selectedStudent && (
-              <div className={styles.timetableContainer} ref={downloadDivRef}>
-                <div className={styles.studentHeader}>
-                  <h2 className={styles.studentName}>{selectedStudent.name}</h2>
-                  <span className={styles.studentGroup}>
-                    Group: {selectedStudent.group}
-                  </span>
-                </div>
+              {selectedStudent && (
+                <div className={styles.timetableContainer}>
+                  <div className={styles.studentHeader}>
+                    <h2 className={styles.studentName}>{selectedStudent.name}</h2>
+                    <span className={styles.studentGroup}>
+                      Group: {selectedStudent.group}
+                    </span>
+                  </div>
 
-                <div className={styles.daySelector} ref={daySelectorRef}>
-                  {daysOfWeek.map(day => (
-                    <button
-                      key={day}
-                      onClick={() => setSelectedDay(day as WeekDay)}
-                      className={`${styles.dayButton} ${selectedDay === day ? styles.active : ''}`}
-                    >
-                      {day.charAt(0).toUpperCase() + day.slice(1)}
-                    </button>
-                  ))}
-                </div>
+                  <div className={styles.daySelector} ref={daySelectorRef}>
+                    {daysOfWeek.map(day => (
+                      <button
+                        key={day}
+                        onClick={() => setSelectedDay(day as WeekDay)}
+                        className={`${styles.dayButton} ${selectedDay === day ? styles.active : ''}`}
+                      >
+                        {day.charAt(0).toUpperCase() + day.slice(1)}
+                      </button>
+                    ))}
+                  </div>
 
-                <div className={styles.tableWrapper}>
-                  <table className={styles.timetable}>
-                    <thead>
-                      <tr>
-                        <th>Time</th>
-                        <th>Course</th>
-                        <th>Groups</th>
-                        <th>Location</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {selectedStudent.timetable.length > 0 ? (
-                        selectedStudent.timetable.map((slot, idx) => (
-                          <tr key={idx}>
-                            <td>{slot.time}</td>
-                            <td>{slot.course}</td>
-                            <td>{slot.groups}</td>
-                            <td>{slot.location}</td>
-                          </tr>
-                        ))
-                      ) : (
+                  <div className={styles.tableWrapper}>
+                    <table className={styles.timetable}>
+                      <thead>
                         <tr>
-                          <td colSpan={4} className={styles.noClassesCell}>No classes scheduled for today. ✨</td>
+                          <th>Time</th>
+                          <th>Course</th>
+                          <th>Groups</th>
+                          <th>Location</th>
                         </tr>
-                      )}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {selectedStudent.timetable.length > 0 ? (
+                          selectedStudent.timetable.map((slot, idx) => (
+                            <tr key={idx}>
+                              <td>{slot.time}</td>
+                              <td>{slot.course}</td>
+                              <td>{slot.groups}</td>
+                              <td>{slot.location}</td>
+                            </tr>
+                          ))
+                        ) : (
+                          <tr>
+                            <td colSpan={4} className={styles.noClassesCell}>No classes scheduled for today. ✨</td>
+                          </tr>
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
             </div>
-
-            {/* <button onClick={handleDownload}>Download</button> */}
           </main>
 
           <footer className={styles.footer}>
