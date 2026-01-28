@@ -395,8 +395,8 @@
                 "type": "CLH-LT103"
             },
             {
-                "timeStart": "08:00",
-                "timeEnd": "09:00",
+                "timeStart": "18:00",
+                "timeEnd": "19:00",
                 "GroupStart": "1",
                 "GroupEnd": "24",
                 "CourseName": "IK1201",
@@ -510,14 +510,6 @@
                 "GroupEnd": "24",
                 "CourseName": "MA1201",
                 "type": "CLH-LT003"
-            },
-            {
-                "timeStart": "08:00",
-                "timeEnd": "09:00",
-                "GroupStart": "1",
-                "GroupEnd": "24",
-                "CourseName": "IK1201",
-                "type": "CLH-LT003/LT103"
             }
         ],
         "Special": []
@@ -659,7 +651,16 @@
                 "GroupEnd": "12",
                 "CourseName": "CH1201",
                 "type": "CLH-LT103"
+            },
+            {
+                "timeStart": "18:00",
+                "timeEnd": "19:00",
+                "GroupStart": "1",
+                "GroupEnd": "24",
+                "CourseName": "IK1201",
+                "type": "CLH-LT003/LT103"
             }
+
         ],
         "Special": []
     }
