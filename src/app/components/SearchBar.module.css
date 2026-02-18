@@ -1,0 +1,124 @@
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.inputWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: color var(--transition-fast);
+}
+
+.input {
+    width: 100%;
+    padding: 0.85rem 2.8rem 0.85rem 3rem;
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    outline: none;
+    transition: all var(--transition-normal);
+    box-sizing: border-box;
+}
+
+.input::placeholder {
+    color: var(--text-muted);
+}
+
+.input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow), var(--shadow-sm);
+}
+
+.input:focus~.searchIcon,
+.inputWrapper:focus-within .searchIcon {
+    color: var(--accent-light);
+}
+
+.clearBtn {
+    position: absolute;
+    top: 50%;
+    right: 0.75rem;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 0.25rem 0.4rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    line-height: 1;
+}
+
+.clearBtn:hover {
+    color: var(--text-primary);
+    background: var(--bg-card-hover);
+}
+
+/* Suggestions dropdown */
+.suggestions {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    list-style: none;
+    padding: 0.4rem;
+    z-index: 50;
+    max-height: 260px;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: slideIn var(--transition-normal);
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 0.9rem;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    font-size: 0.92rem;
+}
+
+.item:hover,
+.itemActive {
+    background: var(--bg-card-hover);
+}
+
+.itemActive {
+    color: var(--accent-light);
+}
+
+.itemName {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.itemActive .itemName {
+    color: var(--accent-light);
+}
+
+.itemMeta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: var(--bg-elevated);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-full);
+}

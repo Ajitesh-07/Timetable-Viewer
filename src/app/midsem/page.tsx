@@ -1,8 +1,7 @@
 'use client';
-import React, { useEffect, useRef, useState } from "react";
-import nameMap from '../../../lib/nameMap.json';
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./page.module.css";
-import Head from "next/head";
+import SearchBar from "../components/SearchBar";
 
 interface TimetableSlot {
   time: string;
@@ -19,208 +18,148 @@ interface Student {
   timetable: TimetableSlot[];
 }
 
-async function getExamSchedule(selectedStudentInfo: { name: string; group: string, rollNo: string }): Promise<Student> {
-    const res = await fetch(`midsem/api?idx=${selectedStudentInfo.rollNo.toUpperCase()}`);
-    const data = await res.json()
-    return {
-        name: selectedStudentInfo.name,
-        group: parseInt(selectedStudentInfo.group),
-        rollno: selectedStudentInfo.rollNo,
-        timetable: data.results
-    }
+async function getExamSchedule(info: { name: string; group: string; rollNo: string }): Promise<Student> {
+  const res = await fetch(`midsem/api?idx=${info.rollNo.toUpperCase()}`);
+  const data = await res.json();
+  return {
+    name: info.name,
+    group: parseInt(info.group),
+    rollno: info.rollNo,
+    timetable: data.results || [],
+  };
 }
 
-const TimetablePage = () => {
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [isSuggestionsVisible, setSuggestionsVisible] = useState<boolean>(false);
-  const [isLoadingData, setIsLoadingData] = useState<boolean>(false);
-
-  const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: string; group: string, rollNo: string } | null>(null);
-
+const MidsemPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
-
-  const searchContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (searchQuery.trim().length > 0 && searchQuery !== (selectedStudentInfo?.name || '')) {
-      const filtered = Object.keys(nameMap).filter(student =>
-        student.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setSuggestions(filtered);
-      setSuggestionsVisible(true);
-    } else {
-      setSuggestions([]);
-      setSuggestionsVisible(false);
-    }
-  }, [searchQuery, selectedStudentInfo]);
+  const [selectedInfo, setSelectedInfo] = useState<{ name: string; group: string; rollNo: string } | null>(null);
 
   useEffect(() => {
-    if (!selectedStudentInfo) return;
-
+    if (!selectedInfo) return;
     let mounted = true;
-    setIsLoadingData(true);
+    setIsLoading(true);
 
     (async () => {
       try {
-        const data = await getExamSchedule(selectedStudentInfo);
-        if (!mounted) return;
-        setSelectedStudent(data);
+        const data = await getExamSchedule(selectedInfo);
+        if (mounted) setSelectedStudent(data);
       } catch (err) {
-        console.error("Error fetching timetable:", err);
+        console.error("Error fetching schedule:", err);
         if (mounted) setSelectedStudent(null);
       } finally {
-        if (mounted) setIsLoadingData(false);
+        if (mounted) setIsLoading(false);
       }
     })();
 
     return () => { mounted = false; };
-  }, [selectedStudentInfo]);
+  }, [selectedInfo]);
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
-        setSuggestionsVisible(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+  const handleSelect = useCallback((name: string, group: string, rollNo: string) => {
+    setSelectedInfo({ name, group, rollNo });
   }, []);
 
-  const handleSuggestionClick = (studentName: string) => {
-    setSearchQuery(studentName); // Set input text to the selected student
-    const groupNo: string = nameMap[studentName as keyof typeof nameMap][0];
-    const rollNo: string = nameMap[studentName as keyof typeof nameMap][1];
-    setSelectedStudentInfo({ name: studentName, group: groupNo, rollNo: rollNo });
-    setSuggestionsVisible(false);
+  // Calculate days until next exam
+  const getCountdown = () => {
+    if (!selectedStudent || selectedStudent.timetable.length === 0) return null;
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+
+    for (const slot of selectedStudent.timetable) {
+      const [day, month, year] = slot.date.split('-').map(Number);
+      const examDate = new Date(year, month - 1, day);
+      examDate.setHours(0, 0, 0, 0);
+      const diff = Math.ceil((examDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+      if (diff >= 0) return { days: diff, course: slot.course, date: slot.date };
+    }
+    return null;
   };
 
-  const handleSearchFocus = () => {
-    if (searchQuery.trim().length > 0 && suggestions.length > 0) {
-      setSuggestionsVisible(true);
-    }
-  };
+  const countdown = selectedStudent ? getCountdown() : null;
 
   return (
-    <>
-      <Head>
-        <title>Timetable finder</title>
-        <meta name="description" content="This is the homepage of my awesome site" />
-      </Head>
+    <main className={styles.page}>
+      <div className={styles.hero}>
+        <h1 className={styles.title}>
+          Midsem Schedule
+          <span className={styles.titleAccent}> Finder</span>
+        </h1>
+        <p className={styles.subtitle}>
+          Search for a student to view their midsem exam schedule
+        </p>
+      </div>
 
-      <main>
-        <div className={styles.pageContainer}>
-          <main className={styles.mainContent}>
-            <h1 className={styles.title}>Midsem Schedule Finder 🗓️</h1>
-            <p className={styles.subtitle}>
-              Enter a student name to view their Midsem Schedule.
-            </p>
+      <div className={styles.searchArea}>
+        <SearchBar
+          placeholder="Search by student name..."
+          onSelect={handleSelect}
+        />
+      </div>
 
-            <div className={styles.searchContainer} ref={searchContainerRef}>
-              <div className={styles.inputWrapper}>
-                <svg
-                  className={styles.searchIcon}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={handleSearchFocus}
-                  placeholder="Ex Aditya"
-                  className={styles.searchInput}
-                  autoComplete="off"
-                />
+      {(isLoading || selectedStudent) && (
+        <div className={styles.resultArea}>
+          <div className={styles.card}>
+            <div className={styles.cardHeader}>
+              <div className={styles.headerLeft}>
+                <h2 className={styles.studentName}>
+                  {selectedStudent?.name ?? selectedInfo?.name}
+                </h2>
+                <div className={styles.headerMeta}>
+                  <span className={styles.badge}>Group {selectedStudent?.group ?? selectedInfo?.group}</span>
+                  <span className={styles.badgeOutline}>{selectedStudent?.rollno ?? selectedInfo?.rollNo}</span>
+                </div>
               </div>
-              {isSuggestionsVisible && suggestions.length > 0 && (
-                <ul className={styles.suggestionsList}>
-                  {suggestions.map((student) => (
-                    <li
-                      key={student}
-                      onClick={() => handleSuggestionClick(student)}
-                      className={styles.suggestionItem}
-                    >
-                      {student}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-
-            <div className={styles.downloadContainer}>
-              {(selectedStudent || isLoadingData) && (
-                <div className={styles.timetableContainer}>
-                  <div className={styles.studentHeader}>
-                    <div className={styles.studentHeaderC1}>
-                      <h2 className={styles.studentName}>
-                        {selectedStudent?.name ?? selectedStudentInfo?.name}
-                      </h2>
-                      <span className={styles.studentGroup}>
-                        Group: {selectedStudent?.group ?? selectedStudentInfo?.group}
-                      </span>
-                    </div>
-                    <div className={styles.studentHeaderRollNo}>
-                      <span>Roll No: {selectedStudent?.rollno ?? selectedStudentInfo?.rollNo}</span>
-                    </div>
-                  </div>
-
-                  <div className={styles.tableWrapper}>
-                    <table className={styles.timetable}>
-                      <thead>
-                        <tr>
-                          <th>Date</th>
-                          <th>Day</th>
-                          <th>Time</th>
-                          <th>Course</th>
-                          <th>Location</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {isLoadingData ? (
-                          <tr>
-                            <td colSpan={5} className={styles.noClassesCell}>Loading Data</td>
-                          </tr>
-                        ) : selectedStudent && selectedStudent.timetable.length > 0 ? (
-                          selectedStudent.timetable.map((slot, idx) => (
-                            <tr key={idx}>
-                              <td>{slot.date}</td>
-                              <td>{slot.day}</td>
-                              <td>{slot.time}</td>
-                              <td>{slot.course}</td>
-                              <td>{slot.location}</td>
-                            </tr>
-                          ))
-                        ) : (
-                          <tr>
-                            <td colSpan={5} className={styles.noClassesCell}>No classes scheduled for today. ✨</td>
-                          </tr>
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
+              {countdown && (
+                <div className={styles.countdown}>
+                  <span className={styles.countdownNum}>{countdown.days}</span>
+                  <span className={styles.countdownLabel}>
+                    {countdown.days === 1 ? 'day' : 'days'} to {countdown.course}
+                  </span>
                 </div>
               )}
             </div>
 
-          </main>
-
+            <div className={styles.tableWrapper}>
+              <table className={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Course</th>
+                    <th>Room</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {isLoading ? (
+                    <tr>
+                      <td colSpan={5} className={styles.loadingCell}>
+                        <div className={styles.spinner} />
+                        Loading schedule...
+                      </td>
+                    </tr>
+                  ) : selectedStudent && selectedStudent.timetable.length > 0 ? (
+                    selectedStudent.timetable.map((slot, idx) => (
+                      <tr key={idx}>
+                        <td className={styles.dateCell}>{slot.date}</td>
+                        <td>{slot.day}</td>
+                        <td className={styles.timeCell}>{slot.time}</td>
+                        <td><span className={styles.courseName}>{slot.course}</span></td>
+                        <td><span className={styles.locationBadge}>{slot.location}</span></td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={5} className={styles.emptyCell}>No exams found</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-      </main>
-    </>
+      )}
+    </main>
   );
 };
 
-export default TimetablePage;
+export default MidsemPage;

@@ -1,294 +1,428 @@
-.pageContainer {
+.page {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  background-color: #f0f2f5; /* Light grey background */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  padding: 2rem;
-  box-sizing: border-box;
+  min-height: calc(100vh - 60px);
 }
 
-.mainContent {
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+/* Hero */
+.hero {
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.5s ease;
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1c1e21; /* Dark grey text */
-  text-align: center;
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1.15;
+}
+
+.titleAccent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .subtitle {
-  font-size: 1.1rem;
-  color: #606770; /* Medium grey text */
-  text-align: center;
-  margin-top: -1.5rem;
+  margin-top: 0.6rem;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
 }
 
-/* --- Search Bar & Suggestions --- */
-.searchContainer {
-  position: relative;
+.searchArea {
   width: 100%;
-  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.5s ease 0.1s both;
 }
 
-.inputWrapper {
-    position: relative;
-    width: 100%;
-}
-
-.searchIcon {
-    position: absolute;
-    top: 50%;
-    left: 1rem;
-    transform: translateY(-50%);
-    color: #8a919c;
-    width: 20px;
-    height: 20px;
-}
-
-.searchInput {
+/* Result */
+.resultArea {
   width: 100%;
-  padding: 1rem 1rem 1rem 3rem; /* Left padding for icon */
-  font-size: 1rem;
-  border: 1px solid #ccd0d5;
-  border-radius: 2rem; /* Pill shape */
-  background-color: #ffffff;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  box-sizing: border-box;
+  animation: fadeInUp 0.4s ease;
 }
 
-.searchInput:focus {
-  outline: none;
-  border-color: #1877f2; /* Facebook blue for focus */
-  box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.2);
-}
-
-.suggestionsList {
-  position: absolute;
-  width: 100%;
-  background-color: #ffffff;
-  border: 1px solid #ccd0d5;
-  border-radius: 1rem;
-  list-style: none;
-  padding: 0.5rem 0;
-  margin-top: 0.5rem;
-  z-index: 10;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.suggestionItem {
-  padding: 0.75rem 1.5rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  font-size: 1rem;
-  color: #333;
-}
-
-.suggestionItem:hover {
-  background-color: #f0f2f5;
-}
-
-/* --- Timetable Display --- */
-.timetableContainer {
-  width: 100%;
-  background-color: #ffffff;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  animation: fadeIn 0.5s ease-in-out;
+  box-shadow: var(--shadow-md);
 }
 
-.studentHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-    background-color: #1877f2;
-    color: white;
+/* Card header */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .studentName {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
 }
 
-.studentGroup {
-    font-size: 1rem;
-    font-weight: 500;
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
+.badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
 }
 
+.downloadBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: all var(--transition-fast);
+}
+
+.downloadBtn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Day selector */
+.daySelector {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  justify-content: center;
+}
+
+.dayBtn {
+  position: relative;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+}
+
+.dayBtn:hover {
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+}
+
+.dayActive {
+  color: #fff;
+  background: var(--accent);
+}
+
+.dayActive:hover {
+  background: var(--accent-dark);
+  color: #fff;
+}
+
+.todayDot {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  width: 5px;
+  height: 5px;
+  background: var(--success);
+  border-radius: 50%;
+}
+
+/* Free slots bar */
+.freeSlotsBar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  flex-wrap: wrap;
+}
+
+.freeLabel {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.freeChip {
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  background: var(--success-glow);
+  color: var(--success);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+/* Table */
 .tableWrapper {
-    overflow-x: auto; /* For responsiveness on small screens */
+  overflow-x: auto;
 }
 
-.timetable {
+.table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
 }
 
-.timetable th,
-.timetable td {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid #e9ebee;
-}
-
-.timetable th {
-  font-size: 0.85rem;
+.table th {
+  padding: 0.7rem 1.25rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: #606770;
   text-transform: uppercase;
-  background-color: #f5f6f7;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
 }
 
-.timetable td {
-  font-size: 1rem;
-  color: #1c1e21;
+.table td {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
 }
 
-.timetable tbody tr:last-child td {
+.table tbody tr:last-child td {
   border-bottom: none;
 }
 
-.timetable tbody tr:hover {
-    background-color: #f0f2f5;
+.table tbody tr {
+  transition: background var(--transition-fast);
 }
 
-.daySelector {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 1rem 0rem;
-  background-color: #f5f6f7;
-  border-bottom: 1px solid #e9ebee;
-  overflow-x: auto; /* Allows scrolling on small screens */
+.table tbody tr:hover {
+  background: var(--bg-card-hover);
 }
 
-.dayButton {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
+.timeCell {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.courseName {
   font-weight: 600;
-  color: #606770;
-  background-color: transparent;
-  border: 2px solid transparent;
-  border-radius: 1.5rem; /* Pill shape */
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  white-space: nowrap; /* Prevents button text from wrapping */
+  color: var(--text-primary);
 }
 
-.dayButton:hover {
-  background-color: #e9ebee;
-  color: #1c1e21;
+.locationBadge {
+  font-size: 0.82rem;
+  padding: 0.15rem 0.5rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
 }
 
-.dayButton.active {
-  color: #ffffff;
-  background-color: #1877f2; 
-  border-color: #1877f2;
+/* Status badges */
+.statusActive {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: var(--success-glow);
+  color: var(--success);
+  animation: pulseGlow 2s ease-in-out infinite;
 }
 
-.noClassesCell {
+.statusNext {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: rgba(251, 191, 36, 0.15);
+  color: var(--warning);
+}
+
+.statusPast {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+}
+
+.statusUpcoming {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+}
+
+/* Active row highlight */
+.row_active {
+  background: rgba(52, 211, 153, 0.05) !important;
+  border-left: 3px solid var(--success);
+}
+
+.row_next {
+  background: rgba(251, 191, 36, 0.04) !important;
+  border-left: 3px solid var(--warning);
+}
+
+.row_past {
+  opacity: 0.55;
+}
+
+
+.emptyCell {
   text-align: center;
-  padding: 2rem;
-  color: #606770;
+  padding: 2.5rem 1rem !important;
+  color: var(--text-muted);
   font-style: italic;
+  font-size: 0.95rem;
 }
 
-.studentHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-    background: linear-gradient(45deg, #1877f2, #3b5998);
-    color: white;
+/* Mobile cards - hidden by default, shown on mobile */
+.cardList {
+  display: none;
 }
 
-.timetableContainer {
-  width: 100%;
-  background-color: #ffffff;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  animation: fadeIn 0.5s ease-in-out;
+.classCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition-fast);
 }
 
-.tableWrapper {
-  overflow-x: auto; /* For responsiveness on small screens */
+.classCard:last-child {
+  border-bottom: none;
 }
 
-/* --- Animations --- */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.classCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.routerLink {
-  color: #1877f2;
-  cursor: pointer;
+.classCardBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
-.downloadContainer {
-  width: 100%;
+.classCardTime {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
 }
 
-.footer {
-  width: 100%;
+.emptyCard {
   text-align: center;
-  padding: 2rem 0 1rem;
-  margin-top: auto; 
-  color: #888;
-  font-size: 0.9em;
+  padding: 2rem 1rem;
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.9rem;
 }
 
-.footer p {
-  margin: 0;
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 3rem 0 1.5rem;
+  margin-top: auto;
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
-.taking-screenshot {
-  animation: none !important;
-  transform: none !important;
-  font-weight: 1000;
+/* Card status variants */
+.card_active {
+  background: rgba(52, 211, 153, 0.06);
+  border-left: 3px solid var(--success);
 }
 
-/* --- Responsive Design --- */
-@media (max-width: 600px) {
-    .pageContainer {
-        padding: 1rem;
-    }
-    .title {
-        font-size: 2rem;
-    }
-    .timetable th, .timetable td {
-        padding: 0.75rem;
-        font-size: 0.9rem;
-    }
-    .studentName {
-        font-size: 1.25rem;
-    }
+.card_next {
+  background: rgba(251, 191, 36, 0.04);
+  border-left: 3px solid var(--warning);
+}
 
-    .daySelector {
-      justify-content: flex-start;
-    }
+.card_past {
+  opacity: 0.5;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .page {
+    padding: 1.25rem 1rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .studentName {
+    font-size: 1.1rem;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .daySelector {
+    justify-content: flex-start;
+  }
+
+  .freeSlotsBar {
+    gap: 0.35rem;
+  }
+
+  /* Hide table, show cards on mobile */
+  .tableWrapper {
+    display: none;
+  }
+
+  .cardList {
+    display: flex;
+    flex-direction: column;
+  }
 }
