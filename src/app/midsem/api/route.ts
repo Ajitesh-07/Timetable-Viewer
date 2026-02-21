@@ -53,7 +53,7 @@ export async function GET(request: NextRequest) {
     }
 
     if (!indexCache) {
-        const indexPath = path.join(process.cwd(), 'public', 'data', 'endSemSchdl.json');
+        const indexPath = path.join(process.cwd(), 'public', 'data', 'midSemSchdl.json');
         const raw = await fs.readFile(indexPath, 'utf8');
         indexCache = JSON.parse(raw) as Slot[];
     }

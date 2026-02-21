@@ -182,7 +182,7 @@ const TimetablePage = () => {
   };
 
   const handleRouter = () => {
-    router.push('/endsem')
+    router.push('/midsem')
   }
 
   return (
@@ -199,7 +199,7 @@ const TimetablePage = () => {
             <h1 className={styles.title}>Student Timetable Finder 🗓️</h1>
             <p className={styles.subtitle}>
               Enter a student name to view their weekly schedule.
-              Click <a className={styles.routerLink} onClick={handleRouter}>here</a> to check your ENDSEM schedule
+              Click <a className={styles.routerLink} onClick={handleRouter}>here</a> to check your MIDSEM schedule
             </p>
 
             <div className={styles.searchContainer} ref={searchContainerRef}>

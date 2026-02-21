@@ -20,7 +20,7 @@ interface Student {
 }
 
 async function getExamSchedule(selectedStudentInfo: { name: string; group: string, rollNo: string }): Promise<Student> {
-    const res = await fetch(`endsem/api?idx=${selectedStudentInfo.rollNo.toUpperCase()}`);
+    const res = await fetch(`midsem/api?idx=${selectedStudentInfo.rollNo.toUpperCase()}`);
     const data = await res.json()
     return {
         name: selectedStudentInfo.name,
@@ -113,9 +113,9 @@ const TimetablePage = () => {
       <main>
         <div className={styles.pageContainer}>
           <main className={styles.mainContent}>
-            <h1 className={styles.title}>Endsem Schedule Finder 🗓️</h1>
+            <h1 className={styles.title}>Midsem Schedule Finder 🗓️</h1>
             <p className={styles.subtitle}>
-              Enter a student name to view their Endsem Schedule.
+              Enter a student name to view their Midsem Schedule.
             </p>
 
             <div className={styles.searchContainer} ref={searchContainerRef}>
