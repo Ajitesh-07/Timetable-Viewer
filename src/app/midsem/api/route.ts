@@ -65,7 +65,7 @@ export async function GET(request: NextRequest) {
             results.push({
                 date: slot.date,
                 day: toLowercaseExceptFirst(slot.day),
-                time: (slot.shift == 'Morning') ? "10:30 - 12:30" : "15:00 - 18:00",
+                time: (slot.shift.toUpperCase() == 'MORNING') ? "10:30 - 12:30" : "15:00 - 18:00",
                 course: slot.coursecode,
                 location: slot.roomno
             });
