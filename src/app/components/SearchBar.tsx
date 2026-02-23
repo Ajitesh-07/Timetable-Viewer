@@ -10,7 +10,7 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({
-    placeholder = 'Search for a student...',
+    placeholder = 'Search by name or roll number...',
     onSelect,
     showGroup = true,
 }: SearchBarProps) {
@@ -25,9 +25,11 @@ export default function SearchBar({
     // Filter suggestions
     useEffect(() => {
         if (query.trim().length > 0 && query !== selectedName) {
-            const filtered = Object.keys(nameMap).filter(name =>
-                name.toLowerCase().includes(query.toLowerCase())
-            );
+            const q = query.toLowerCase();
+            const filtered = Object.entries(nameMap).filter(([name, data]) =>
+                name.toLowerCase().includes(q) ||
+                (data as string[])[1].toLowerCase().includes(q)
+            ).map(([name]) => name);
             setSuggestions(filtered.slice(0, 50));
             setIsOpen(true);
             setActiveIndex(-1);
@@ -146,7 +148,9 @@ export default function SearchBar({
                             >
                                 <span className={styles.itemName}>{name}</span>
                                 {showGroup && data && (
-                                    <span className={styles.itemMeta}>Group {data[0]}</span>
+                                    <span className={styles.itemMeta}>
+                                        {(data as string[])[1]} · Group {data[0]}
+                                    </span>
                                 )}
                             </li>
                         );
