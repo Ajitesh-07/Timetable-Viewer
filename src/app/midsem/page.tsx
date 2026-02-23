@@ -58,18 +58,28 @@ const MidsemPage = () => {
     setSelectedInfo({ name, group, rollNo });
   }, []);
 
-  // Calculate days until next exam
+  // Calculate time until next exam (accounting for exam start time)
   const getCountdown = () => {
     if (!selectedStudent || selectedStudent.timetable.length === 0) return null;
     const now = new Date();
-    now.setHours(0, 0, 0, 0);
 
     for (const slot of selectedStudent.timetable) {
       const [day, month, year] = slot.date.split('-').map(Number);
       const examDate = new Date(year, month - 1, day);
-      examDate.setHours(0, 0, 0, 0);
-      const diff = Math.ceil((examDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-      if (diff >= 0) return { days: diff, course: slot.course, date: slot.date };
+
+      // Parse the exam start time (e.g. "10:30 - 12:30" → 10:30)
+      const timeMatch = slot.time.match(/^(\d{1,2}):(\d{2})/);
+      if (timeMatch) {
+        examDate.setHours(parseInt(timeMatch[1]), parseInt(timeMatch[2]), 0, 0);
+      }
+
+      const diffMs = examDate.getTime() - now.getTime();
+      if (diffMs >= 0) {
+        const totalHours = Math.floor(diffMs / (1000 * 60 * 60));
+        const days = Math.floor(totalHours / 24);
+        const hours = totalHours % 24;
+        return { days, hours, course: slot.course, date: slot.date };
+      }
     }
     return null;
   };
@@ -110,9 +120,13 @@ const MidsemPage = () => {
               </div>
               {countdown && (
                 <div className={styles.countdown}>
-                  <span className={styles.countdownNum}>{countdown.days}</span>
+                  <span className={styles.countdownNum}>
+                    {countdown.days > 0 ? countdown.days : `${countdown.hours}h`}
+                  </span>
                   <span className={styles.countdownLabel}>
-                    {countdown.days === 1 ? 'day' : 'days'} to {countdown.course}
+                    {countdown.days > 0
+                      ? `${countdown.days === 1 ? 'day' : 'days'} to ${countdown.course}`
+                      : `left for ${countdown.course}`}
                   </span>
                 </div>
               )}
