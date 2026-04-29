@@ -61,14 +61,31 @@ const EndsemPage = () => {
     const getCountdown = () => {
         if (!selectedStudent || selectedStudent.timetable.length === 0) return null;
         const now = new Date();
-        now.setHours(0, 0, 0, 0);
+        const currentMs = now.getHours() * 60 * 60 * 1000 + now.getMinutes() * 60 * 1000;
+        
+        const nowMidnight = new Date(now);
+        nowMidnight.setHours(0, 0, 0, 0);
 
         for (const slot of selectedStudent.timetable) {
             const [day, month, year] = slot.date.split('-').map(Number);
             const examDate = new Date(year, month - 1, day);
             examDate.setHours(0, 0, 0, 0);
-            const diff = Math.ceil((examDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-            if (diff >= 0) return { days: diff, course: slot.course, date: slot.date };
+            const diff = Math.ceil((examDate.getTime() - nowMidnight.getTime()) / (1000 * 60 * 60 * 24));
+            
+            if (diff > 0) {
+                return { days: diff, course: slot.course, date: slot.date };
+            } else if (diff === 0) {
+                const [startTime, endTime] = slot.time.split(' - ');
+                if (endTime) {
+                    const [endH, endM] = endTime.split(':').map(Number);
+                    const endMs = endH * 60 * 60 * 1000 + endM * 60 * 1000;
+                    if (currentMs < endMs) {
+                        return { days: 0, course: slot.course, date: slot.date };
+                    }
+                } else {
+                    return { days: 0, course: slot.course, date: slot.date };
+                }
+            }
         }
         return null;
     };
