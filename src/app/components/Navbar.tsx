@@ -7,7 +7,6 @@ import styles from './Navbar.module.css';
 const navLinks = [
     { href: '/', label: 'Schedule' },
     { href: '/endsem', label: 'Endsem' },
-    { href: '/compare', label: 'Compare' },
 ];
 
 export default function Navbar() {
