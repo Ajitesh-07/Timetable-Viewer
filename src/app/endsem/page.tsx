@@ -75,7 +75,7 @@ const EndsemPage = () => {
             if (diff > 0) {
                 return { days: diff, course: slot.course, date: slot.date };
             } else if (diff === 0) {
-                const [startTime, endTime] = slot.time.split(' - ');
+                const [, endTime] = slot.time.split(' - ');
                 if (endTime) {
                     const [endH, endM] = endTime.split(':').map(Number);
                     const endMs = endH * 60 * 60 * 1000 + endM * 60 * 1000;

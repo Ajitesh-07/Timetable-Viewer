@@ -14,7 +14,7 @@ import mncTimetable from '../../lib/timetable/MNC.json';
 import eceTimetable from '../../lib/timetable/ECE.json';
 import mmeTimetable from '../../lib/timetable/MME.json';
 
-const branchMap: Record<string, any> = {
+const branchMap: Record<string, Record<string, { Schedule?: ScheduleEntry[] }>> = {
   PH: epTimetable,
   EE: eeTimetable,
   ST: ceTimetable,
