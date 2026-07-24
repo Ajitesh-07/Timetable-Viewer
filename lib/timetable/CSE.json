@@ -1,0 +1,141 @@
+{
+    "monday": {
+        "Schedule": [
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "CSE",
+                "CourseName": "CS2103-AI concept",
+                "type": "LT001"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "CSE",
+                "CourseName": "CS2102-Digital Logic",
+                "type": "LT001"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "CSE",
+                "CourseName": "CS2101-Algorithms",
+                "type": "LT001"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "18:00",
+                "Dept": "CSE",
+                "CourseName": "CS2103-AI Concept lab",
+                "type": "CC1/New lab"
+            }
+        ]
+    },
+    "tuesday": {
+        "Schedule": [
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "CSE",
+                "CourseName": "CS2103-AI concept",
+                "type": "LT001"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "CSE",
+                "CourseName": "CS2102-Digital Logic",
+                "type": "LT001"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "CSE",
+                "CourseName": "CS2104-Discrete Mathematics",
+                "type": "LT001"
+            }
+        ]
+    },
+    "wednesday": {
+        "Schedule": [
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "CSE",
+                "CourseName": "CS2102-Digital Logic",
+                "type": "LT001"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "CSE",
+                "CourseName": "CS2105-Optimization Technique",
+                "type": "LT001"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "CSE",
+                "CourseName": "CS2101-Algorithms",
+                "type": "LT001"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "18:00",
+                "Dept": "CSE",
+                "CourseName": "CS2102-Digital Logic lab",
+                "type": "CSE Dept class room and Hardware lab + extension"
+            }
+        ]
+    },
+    "thursday": {
+        "Schedule": [
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "CSE",
+                "CourseName": "CS2104-Discrete Mathematics",
+                "type": "LT001"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "CSE",
+                "CourseName": "CS2105-Optimization Technique",
+                "type": "LT001"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "CSE",
+                "CourseName": "CS2101-Algorithms",
+                "type": "LT001"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "18:00",
+                "Dept": "CSE",
+                "CourseName": "CS2101-Algorithms Lab",
+                "type": "CC1"
+            }
+        ]
+    },
+    "friday": {
+        "Schedule": [
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "CSE",
+                "CourseName": "CS2104-Discrete Mathematics",
+                "type": "LT001"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "CSE",
+                "CourseName": "CS2105-Optimization Technique",
+                "type": "LT001"
+            }
+        ]
+    }
+}

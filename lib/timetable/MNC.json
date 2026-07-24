@@ -1,0 +1,141 @@
+{
+    "monday": {
+        "Schedule": [
+            {
+                "timeStart": "08:00",
+                "timeEnd": "08:55",
+                "Dept": "MNC",
+                "CourseName": "MA2102-Probability and Stochastic Processes (T)",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "MNC",
+                "CourseName": "MA2105-Discrete Mathematics",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "MNC",
+                "CourseName": "MA2103-Optimization Techniques",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "MNC",
+                "CourseName": "MA2104-Algebra",
+                "type": "R-107"
+            }
+        ]
+    },
+    "tuesday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "MNC",
+                "CourseName": "MA2102-Probability and Stochastic Processes",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "MNC",
+                "CourseName": "MA2104-Algebra",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "MNC",
+                "CourseName": "MA2101-Design and Analysis of Algorithms",
+                "type": "R-107"
+            }
+        ]
+    },
+    "wednesday": {
+        "Schedule": [
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "MNC",
+                "CourseName": "MA2101-Design and Analysis of Algorithms",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "MNC",
+                "CourseName": "MA2105-Discrete Mathematics",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "16:55",
+                "Dept": "MNC",
+                "CourseName": "MA2101-Design and Analysis of Algorithms (Lab)",
+                "type": "Dept. Lab"
+            }
+        ]
+    },
+    "thursday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "MNC",
+                "CourseName": "MA2104-Algebra",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "MNC",
+                "CourseName": "MA2102-Probability and Stochastic Processes",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "MNC",
+                "CourseName": "MA2103-Optimization Techniques",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "MNC",
+                "CourseName": "MA2101-Design and Analysis of Algorithms",
+                "type": "R-107"
+            }
+        ]
+    },
+    "friday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "MNC",
+                "CourseName": "MA2105-Discrete Mathematics",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "MNC",
+                "CourseName": "MA2102-Probability and Stochastic Processes",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "MNC",
+                "CourseName": "MA2103-Optimization Techniques",
+                "type": "R-107"
+            }
+        ]
+    }
+}

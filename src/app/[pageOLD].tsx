@@ -1,42 +1,13 @@
 'use client';
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import timetable from '../../lib/timetable/schedule.json';
 import styles from "./page.module.css";
 import SearchBar from "./components/SearchBar";
-
-import epTimetable from '../../lib/timetable/EP.json';
-import eeTimetable from '../../lib/timetable/EE.json';
-import ceTimetable from '../../lib/timetable/CE.json';
-import cseTimetable from '../../lib/timetable/CSE.json';
-import meTimetable from '../../lib/timetable/ME.json';
-import cbeTimetable from '../../lib/timetable/CBE.json';
-import chTimetable from '../../lib/timetable/CH.json';
-import mncTimetable from '../../lib/timetable/MNC.json';
-import eceTimetable from '../../lib/timetable/ECE.json';
-import mmeTimetable from '../../lib/timetable/MME.json';
-
-const branchMap: Record<string, any> = {
-  PH: epTimetable,
-  EE: eeTimetable,
-  ST: ceTimetable,
-  CS: cseTimetable,
-  AI: cseTimetable,
-  PC: eeTimetable,
-  ME: meTimetable,
-  CB: cbeTimetable,
-  CT: chTimetable,
-  GT: ceTimetable,
-  CE: ceTimetable,
-  MC: mncTimetable,
-  CM: eceTimetable,
-  MM: mmeTimetable,
-  MT: meTimetable,
-  VL: eceTimetable,
-  EC: eceTimetable,
-};
 
 interface TimetableSlot {
   time: string;
   course: string;
+  groups: string;
   location: string;
   timeStartRaw: string;
   timeEndRaw: string;
@@ -44,9 +15,7 @@ interface TimetableSlot {
 
 interface Student {
   name: string;
-  group: string;
-  rollNo: string;
-  branchCode: string;
+  group: number;
   timetable: TimetableSlot[];
 }
 
@@ -54,14 +23,22 @@ type ScheduleEntry = {
   timeStart: string;
   timeEnd: string;
   CourseName: string;
-  Dept?: string;
+  GroupStart: string;
+  GroupEnd: string;
   type: string;
 };
+
+interface SpecialEntry {
+  timeStart: string;
+  timeEnd: string;
+  names: string[];
+  CourseName: string;
+  type: string;
+}
 
 type WeekDay = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday';
 
 function cleanTime(a: string) {
-  if (!a) return '00:00';
   if (a[1] === ':') return '0' + a;
   return a;
 }
@@ -75,24 +52,44 @@ function formatTo12Hour(time: string): string {
   return `${hours}:${m} ${ampm}`;
 }
 
-function getTimetable(schedule: ScheduleEntry[]): ScheduleEntry[] {
-  return [...schedule].sort((a, b) => {
+function getTimetable(schedule: ScheduleEntry[], specialSchedule: SpecialEntry[], group: number, name: string): ScheduleEntry[] {
+  const interestedCourses = schedule.filter(course => {
+    const start = parseInt(course.GroupStart, 10);
+    const end = parseInt(course.GroupEnd, 10);
+    return group >= start && group <= end && course.CourseName.toUpperCase() !== "HSS";
+  });
+
+  const interestedSpecials = specialSchedule.filter(course =>
+    course.names.includes(name)
+  );
+
+  const mappedSpecials: ScheduleEntry[] = interestedSpecials.map(course => ({
+    timeStart: course.timeStart,
+    timeEnd: course.timeEnd,
+    CourseName: course.CourseName,
+    type: course.type,
+    GroupStart: "SPECIAL",
+    GroupEnd: "SPECIAL",
+  }));
+
+  return [...interestedCourses, ...mappedSpecials].sort((a, b) => {
     const timeA = new Date(`1970-01-01T${cleanTime(a.timeStart)}:00`);
     const timeB = new Date(`1970-01-01T${cleanTime(b.timeStart)}:00`);
     return timeA.getTime() - timeB.getTime();
   });
 }
 
-function getSchedule(schedule: ScheduleEntry[], name: string, group: string, rollNo: string, branchCode: string): Student {
+function getSchedule(schedule: ScheduleEntry[], name: string, group: string): Student {
   const timetableSlot = schedule.map(entry => ({
     time: `${formatTo12Hour(entry.timeStart)} - ${formatTo12Hour(entry.timeEnd)}`,
     course: entry.CourseName,
+    groups: entry.GroupStart === "SPECIAL" ? "Special" : `${entry.GroupStart} to ${entry.GroupEnd}`,
     location: entry.type,
     timeStartRaw: entry.timeStart,
     timeEndRaw: entry.timeEnd,
   }));
 
-  return { name, group, rollNo, branchCode, timetable: timetableSlot };
+  return { name, group: parseInt(group), timetable: timetableSlot };
 }
 
 function getClassStatus(timeStart: string, timeEnd: string): 'active' | 'next' | 'past' | 'upcoming' {
@@ -143,48 +140,25 @@ const TimetablePage = () => {
   let defaultDay: WeekDay = 'monday';
   if (dayNumber >= 1 && dayNumber <= 5) defaultDay = daysOfWeek[dayNumber - 1];
 
-  const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: string; group: string; rollNo: string } | null>(null);
+  const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: string; group: string } | null>(null);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [selectedDay, setSelectedDay] = useState<WeekDay>(defaultDay);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const downloadDivRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (selectedStudentInfo) {
-      const { name, group, rollNo } = selectedStudentInfo;
-      const branchCode = rollNo.substring(4, 6);
-      
-      if (branchCode === 'ES') {
-        setErrorMsg("Schedule for ES branch is currently unavailable.");
-        setSelectedStudent(null);
-        return;
-      }
-      
-      const timetableData = branchMap[branchCode];
-      
-      if (!timetableData) {
-        setErrorMsg(`Timetable for branch ${branchCode} not found.`);
-        setSelectedStudent(null);
-        return;
-      }
-
-      setErrorMsg(null);
-      const daySchedule = timetableData[selectedDay as keyof typeof timetableData]?.Schedule as ScheduleEntry[] || [];
-      
-      if (!daySchedule.length) {
-        const studentSchedule = getSchedule([], name, group, rollNo, branchCode);
-        setSelectedStudent(studentSchedule);
-        return;
-      }
-      
-      const relevantCourses = getTimetable(daySchedule);
-      const studentSchedule = getSchedule(relevantCourses, name, group, rollNo, branchCode);
+      const { name, group } = selectedStudentInfo;
+      const daySchedule = timetable[selectedDay as keyof typeof timetable]?.Schedule as ScheduleEntry[] || [];
+      const specialSchedule = timetable[selectedDay as keyof typeof timetable]?.Special as SpecialEntry[] || [];
+      if (!daySchedule && !specialSchedule) return;
+      const relevantCourses = getTimetable(daySchedule, specialSchedule, parseInt(group), name);
+      const studentSchedule = getSchedule(relevantCourses, name, group);
       setSelectedStudent(studentSchedule);
     }
   }, [selectedStudentInfo, selectedDay]);
 
-  const handleSelect = useCallback((name: string, group: string, rollNo: string) => {
-    setSelectedStudentInfo({ name, group, rollNo });
+  const handleSelect = useCallback((name: string, group: string) => {
+    setSelectedStudentInfo({ name, group });
     setSelectedDay(defaultDay);
   }, [defaultDay]);
 
@@ -223,23 +197,14 @@ const TimetablePage = () => {
         />
       </div>
 
-      {errorMsg && (
-        <div className={styles.errorArea}>
-          <p className={styles.errorMessage}>{errorMsg}</p>
-        </div>
-      )}
-
-      {selectedStudent && !errorMsg && (
+      {selectedStudent && (
         <div className={styles.resultArea} ref={downloadDivRef}>
           <div className={styles.card}>
             {/* Student header */}
             <div className={styles.cardHeader}>
               <div className={styles.headerInfo}>
                 <h2 className={styles.studentName}>{selectedStudent.name}</h2>
-                <div className={styles.badges}>
-                  <span className={styles.badge}>Branch: {selectedStudent.branchCode}</span>
-                  <span className={styles.badge}>Group {selectedStudent.group}</span>
-                </div>
+                <span className={styles.badge}>Group {selectedStudent.group}</span>
               </div>
               <button className={styles.downloadBtn} onClick={handleDownload} title="Download as image">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -285,6 +250,7 @@ const TimetablePage = () => {
                   <tr>
                     <th>Time</th>
                     <th>Course</th>
+                    <th>Groups</th>
                     <th>Location</th>
                     {showToday && <th>Status</th>}
                   </tr>
@@ -299,6 +265,7 @@ const TimetablePage = () => {
                           <td>
                             <span className={styles.courseName}>{slot.course}</span>
                           </td>
+                          <td>{slot.groups}</td>
                           <td>
                             <span className={styles.locationBadge}>{slot.location}</span>
                           </td>
@@ -315,7 +282,7 @@ const TimetablePage = () => {
                     })
                   ) : (
                     <tr>
-                      <td colSpan={showToday ? 4 : 3} className={styles.emptyCell}>
+                      <td colSpan={showToday ? 5 : 4} className={styles.emptyCell}>
                         No classes scheduled for this day
                       </td>
                     </tr>

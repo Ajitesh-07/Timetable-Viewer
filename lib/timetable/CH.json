@@ -1,0 +1,155 @@
+{
+    "monday": {
+        "Schedule": [
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "CH",
+                "CourseName": "CH2104-Fluid Mechanics",
+                "type": "R-102"
+            },
+            {
+                "timeStart": "17:00",
+                "timeEnd": "17:55",
+                "Dept": "CH",
+                "CourseName": "CH2103-Introduction to Quantum Chemistry",
+                "type": "R-306"
+            }
+        ]
+    },
+    "tuesday": {
+        "Schedule": [
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "CH",
+                "CourseName": "CH2105-Chemical Process Calculations",
+                "type": "R-102"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "CH",
+                "CourseName": "CH2101-Organic Chemistry",
+                "type": "R-305"
+            }
+        ]
+    },
+    "wednesday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "CH",
+                "CourseName": "CH2101-Organic Chemistry (T)",
+                "type": "R-306"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "CH",
+                "CourseName": "CH2101-Organic Chemistry",
+                "type": "R-306"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "CH",
+                "CourseName": "CH2102-Inorganic Chemistry",
+                "type": "R-306"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "16:55",
+                "Dept": "CH",
+                "CourseName": "CH2104-Fluid Mechanics",
+                "type": "R-102 CBE"
+            },
+            {
+                "timeStart": "17:00",
+                "timeEnd": "17:55",
+                "Dept": "CH",
+                "CourseName": "CH2105-Chemical Process Calculations",
+                "type": "R-102 CBE"
+            }
+        ]
+    },
+    "thursday": {
+        "Schedule": [
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "CH",
+                "CourseName": "CH2102-Inorganic Chemistry (T)",
+                "type": "R-306"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "CH",
+                "CourseName": "CH2102-Inorganic Chemistry",
+                "type": "R-306"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "16:55",
+                "Dept": "CH",
+                "CourseName": "CH2105-Chemical Process Calculations",
+                "type": "R-102"
+            },
+            {
+                "timeStart": "17:00",
+                "timeEnd": "17:55",
+                "Dept": "CH",
+                "CourseName": "CH2103-Introduction to Quantum Chemistry",
+                "type": "R-305"
+            }
+        ]
+    },
+    "friday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "CH",
+                "CourseName": "CH2103-Introduction to Quantum Chemistry (T)",
+                "type": "R-305"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "11:55",
+                "Dept": "CH",
+                "CourseName": "CH2104-Fluid Mechanics",
+                "type": "Lab4"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "CH",
+                "CourseName": "CH2102-Inorganic Chemistry",
+                "type": "R-306"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "CH",
+                "CourseName": "CH2103-Introduction to Quantum Chemistry",
+                "type": "R-305"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "16:55",
+                "Dept": "CH",
+                "CourseName": "CH2104-Fluid Mechanics",
+                "type": "R-102"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "CH",
+                "CourseName": "CH2101-Organic Chemistry",
+                "type": "R-305"
+            }
+        ]
+    }
+}

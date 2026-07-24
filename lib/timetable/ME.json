@@ -1,0 +1,183 @@
+{
+    "monday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "ME",
+                "CourseName": "ME2101-Dynamics",
+                "type": "LT002"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "ME",
+                "CourseName": "ME2102-Thermodynamics",
+                "type": "LT002"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "ME",
+                "CourseName": "ME2103-Fluid Mechanics",
+                "type": "LT002"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "ME",
+                "CourseName": "ME2104-Engineering Materials",
+                "type": "R-308"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "ME",
+                "CourseName": "ME2102-Thermodynamics (M)",
+                "type": "R-308"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "17:55",
+                "Dept": "ME",
+                "CourseName": "ME2104-Engineering Materials (P, G2)",
+                "type": "R-301"
+            }
+        ]
+    },
+    "tuesday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "ME",
+                "CourseName": "ME2101-Dynamics",
+                "type": "LT002"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "ME",
+                "CourseName": "ME2102-Thermodynamics",
+                "type": "LT002"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "ME",
+                "CourseName": "ME2104-Engineering Materials",
+                "type": "LT002"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "ME",
+                "CourseName": "ME2103-Fluid Mechanics",
+                "type": "LT002"
+            },
+            {
+                "timeStart": "14:00",
+                "timeEnd": "15:55",
+                "Dept": "ME",
+                "CourseName": "ME2103-Fluid Mechanics (P, G1)",
+                "type": "R-308"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "17:55",
+                "Dept": "ME",
+                "CourseName": "ME2103-Fluid Mechanics (P, G2)",
+                "type": "R-308"
+            }
+        ]
+    },
+    "wednesday": {
+        "Schedule": [
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "ME",
+                "CourseName": "ME2101-Dynamics (T)",
+                "type": "R-308"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "ME",
+                "CourseName": "ME2103-Fluid Mechanics",
+                "type": "LT002"
+            },
+            {
+                "timeStart": "17:00",
+                "timeEnd": "17:55",
+                "Dept": "ME",
+                "CourseName": "ME2102-Thermodynamics (M)",
+                "type": "R-301"
+            }
+        ]
+    },
+    "thursday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "ME",
+                "CourseName": "ME2101-Dynamics",
+                "type": "LT002"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "ME",
+                "CourseName": "ME2102-Thermodynamics",
+                "type": "LT002"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "ME",
+                "CourseName": "ME2103-Fluid Mechanics (T)",
+                "type": "LT002"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "16:55",
+                "Dept": "ME",
+                "CourseName": "ME2104-Engineering Materials (P, G1)",
+                "type": "LT002"
+            }
+        ]
+    },
+    "friday": {
+        "Schedule": [
+            {
+                "timeStart": "14:00",
+                "timeEnd": "14:55",
+                "Dept": "ME",
+                "CourseName": "ME2102-Thermodynamics (T)",
+                "type": "R-308"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "ME",
+                "CourseName": "ME2102-Thermodynamics (M)",
+                "type": "R-301"
+            },
+            {
+                "timeStart": "17:00",
+                "timeEnd": "17:55",
+                "Dept": "ME",
+                "CourseName": "ME2104-Engineering Materials",
+                "type": "LT002"
+            },
+            {
+                "timeStart": "17:00",
+                "timeEnd": "17:55",
+                "Dept": "ME",
+                "CourseName": "ME2102-Thermodynamics (MT)",
+                "type": "R-301"
+            }
+        ]
+    }
+}

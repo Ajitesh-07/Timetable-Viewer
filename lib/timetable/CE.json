@@ -1,0 +1,135 @@
+{
+    "monday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "CE",
+                "CourseName": "CE2103-Fluid Mechanics",
+                "type": "R-104"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "CE",
+                "CourseName": "CE2102-Structural Mechanics",
+                "type": "R-104"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "CE",
+                "CourseName": "CE2104-Geology for Engineers",
+                "type": "R-102"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "17:55",
+                "Dept": "CE",
+                "CourseName": "CE2103 L-Fluid Mechanics",
+                "type": "Lab"
+            }
+        ]
+    },
+    "tuesday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "CE",
+                "CourseName": "CE2102-Structural Mechanics",
+                "type": "R-102"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "CE",
+                "CourseName": "CE2103-Fluid Mechanics",
+                "type": "R-104"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "CE",
+                "CourseName": "CE2103 T-Fluid Mechanics",
+                "type": "R-104"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "16:55",
+                "Dept": "CE",
+                "CourseName": "CE2101-Geomatics Engineering",
+                "type": "R-102"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "17:55",
+                "Dept": "CE",
+                "CourseName": "CE2104 L-Geology for Engineers",
+                "type": "Lab"
+            }
+        ]
+    },
+    "wednesday": {
+        "Schedule": [
+            {
+                "timeStart": "08:00",
+                "timeEnd": "08:55",
+                "Dept": "CE",
+                "CourseName": "CE2101-Geomatics Engineering",
+                "type": "R-104"
+            },
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "CE",
+                "CourseName": "CE2103-Fluid Mechanics",
+                "type": "R-104"
+            },
+
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "CE",
+                "CourseName": "CE2104-Geology for Engineers",
+                "type": "R-104"
+            }
+        ]
+    },
+    "thursday": {
+        "Schedule": [
+            {
+                "timeStart": "08:00",
+                "timeEnd": "08:55",
+                "Dept": "CE",
+                "CourseName": "CE2101-Geomatics Engineering",
+                "type": "R-104"
+            },
+            {
+                "timeStart": "09:00",
+                "timeEnd": "10:55",
+                "Dept": "CE",
+                "CourseName": "CE2102-Structural Mechanics",
+                "type": "R-104"
+            }
+        ]
+    },
+    "friday": {
+        "Schedule": [
+            {
+                "timeStart": "08:00",
+                "timeEnd": "10:55",
+                "Dept": "CE",
+                "CourseName": "CE2101 L-Geomatics Engineering",
+                "type": "Lab"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "CE",
+                "CourseName": "CE2104-Geology for Engineers",
+                "type": "R-104"
+            }
+        ]
+    }
+}

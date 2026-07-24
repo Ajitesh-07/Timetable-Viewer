@@ -1,0 +1,127 @@
+{
+    "monday": {
+        "Schedule": [
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "EP",
+                "CourseName": "EP2103-Classical dynamics: discrete and continuum systems",
+                "type": "R-103"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "EP",
+                "CourseName": "EP2104-Thermal physics with engineering applications",
+                "type": "R-103"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "EP",
+                "CourseName": "EP2102-Optics and Lasers",
+                "type": "R-103"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "17:55",
+                "Dept": "EP",
+                "CourseName": "EP2101-Quantum Physics",
+                "type": "R-103"
+            }
+        ]
+    },
+    "tuesday": {
+        "Schedule": [
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "EP",
+                "CourseName": "EP2102-Optics and Lasers",
+                "type": "R-103"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "EP",
+                "CourseName": "EP2104-Thermal physics with engineering applications",
+                "type": "R-103"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "EP",
+                "CourseName": "EP2101-Quantum Physics",
+                "type": "R-103"
+            }
+        ]
+    },
+    "wednesday": {
+        "Schedule": [
+            {
+                "timeStart": "10:00",
+                "timeEnd": "12:55",
+                "Dept": "EP",
+                "CourseName": "EP2102-Optics and Lasers (Lab)",
+                "type": "R-103"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "EP",
+                "CourseName": "EP2103-Classical dynamics: discrete and continuum systems",
+                "type": "R-103"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "EP",
+                "CourseName": "EP2104-Thermal physics with engineering applications",
+                "type": "R-103"
+            }
+        ]
+    },
+    "thursday": {
+        "Schedule": [
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "EP",
+                "CourseName": "EP2104-Thermal physics with engineering applications",
+                "type": "R-101"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "EP",
+                "CourseName": "EP2103-Classical dynamics: discrete and continuum systems",
+                "type": "R-103"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "EP",
+                "CourseName": "EP2101-Quantum Physics",
+                "type": "R-103"
+            }
+        ]
+    },
+    "friday": {
+        "Schedule": [
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "EP",
+                "CourseName": "EP2103-Classical dynamics: discrete and continuum systems",
+                "type": "R-103"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "EP",
+                "CourseName": "EP2102-Optics and Lasers",
+                "type": "R-103"
+            }
+        ]
+    }
+}

@@ -1,0 +1,127 @@
+{
+    "monday": {
+        "Schedule": [
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "CBE",
+                "CourseName": "CB2102-Fluid Mechanics",
+                "type": "R-102"
+            },
+            {
+                "timeStart": "17:00",
+                "timeEnd": "17:55",
+                "Dept": "CBE",
+                "CourseName": "CB2103-Heat Transfer",
+                "type": "R-307"
+            }
+        ]
+    },
+    "tuesday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "CBE",
+                "CourseName": "CB2105-Chemical Engineering Thermodynamics",
+                "type": "R106"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "CBE",
+                "CourseName": "CB2104-Chemical Process Calculations",
+                "type": "R-102"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "16:55",
+                "Dept": "CBE",
+                "CourseName": "CB2101-Introduction to Chemical Engineering",
+                "type": "R105"
+            }
+        ]
+    },
+    "wednesday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "CBE",
+                "CourseName": "CB2105-Chemical Engineering Thermodynamics",
+                "type": "R-307"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "CBE",
+                "CourseName": "CB2103-Heat Transfer",
+                "type": "R-307"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "16:55",
+                "Dept": "CBE",
+                "CourseName": "CB2102-Fluid Mechanics",
+                "type": "R-102"
+            },
+            {
+                "timeStart": "17:00",
+                "timeEnd": "17:55",
+                "Dept": "CBE",
+                "CourseName": "CB2104-Chemical Process Calculations",
+                "type": "R-102"
+            }
+        ]
+    },
+    "thursday": {
+        "Schedule": [
+            {
+                "timeStart": "10:00",
+                "timeEnd": "12:55",
+                "Dept": "CBE",
+                "CourseName": "CB2103(P)-Heat Transfer Lab",
+                "type": "Lab"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "16:55",
+                "Dept": "CBE",
+                "CourseName": "CB2104-Chemical Process Calculations",
+                "type": "R-102"
+            },
+            {
+                "timeStart": "17:00",
+                "timeEnd": "17:55",
+                "Dept": "CBE",
+                "CourseName": "CB2103-Heat Transfer",
+                "type": "R-307"
+            }
+        ]
+    },
+    "friday": {
+        "Schedule": [
+            {
+                "timeStart": "10:00",
+                "timeEnd": "11:55",
+                "Dept": "CBE",
+                "CourseName": "CB2102(P)-Fluid Mechanics Lab",
+                "type": "Lab"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "CBE",
+                "CourseName": "CB2102-Fluid Mechanics",
+                "type": "R-102"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "CBE",
+                "CourseName": "CB2105-Chemical Engineering Thermodynamics",
+                "type": "R-102"
+            }
+        ]
+    }
+}

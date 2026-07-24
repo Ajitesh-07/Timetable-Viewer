@@ -1,0 +1,148 @@
+{
+    "monday": {
+        "Schedule": [
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "MME",
+                "CourseName": "MM2101-Introduction to Metallurgical and Materials Engineering",
+                "type": "R-108"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "MME",
+                "CourseName": "MM2101-Introduction to Metallurgical and Materials Engineering",
+                "type": "R-108"
+            },
+            {
+                "timeStart": "14:00",
+                "timeEnd": "14:55",
+                "Dept": "MME",
+                "CourseName": "MM2104-Transport Phenomena",
+                "type": "R-108"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "MME",
+                "CourseName": "MM2104-Transport Phenomena",
+                "type": "R-108"
+            }
+        ]
+    },
+    "tuesday": {
+        "Schedule": [
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "MME",
+                "CourseName": "MM2105-Fundamentals of Polymer Science and Technology",
+                "type": "R-108"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "MME",
+                "CourseName": "MM2104-Transport Phenomena",
+                "type": "R-108"
+            }
+        ]
+    },
+    "wednesday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "MME",
+                "CourseName": "MM2103-Thermodynamics and Phase Equilibria",
+                "type": "R-304"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "12:55",
+                "Dept": "MME",
+                "CourseName": "MM2102-Mineral Processing and Process Metallurgy (Lab)",
+                "type": "Dept. Lab"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "MME",
+                "CourseName": "MM2101-Introduction to Metallurgical and Materials Engineering",
+                "type": "NOT MENTIONED"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "MME",
+                "CourseName": "MM2102-Mineral Processing and Process Metallurgy",
+                "type": "R-108"
+            }
+        ]
+    },
+    "thursday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "MME",
+                "CourseName": "MM2103-Thermodynamics and Phase Equilibria",
+                "type": "R-108"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "MME",
+                "CourseName": "MM2103-Thermodynamics and Phase Equilibria",
+                "type": "R-108"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "MME",
+                "CourseName": "MM2104-Transport Phenomena (T)",
+                "type": "R-108"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "MME",
+                "CourseName": "MM2102-Mineral Processing and Process Metallurgy",
+                "type": "R-108"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "16:55",
+                "Dept": "MME",
+                "CourseName": "MM2102-Mineral Processing and Process Metallurgy",
+                "type": "R-108"
+            }
+        ]
+    },
+    "friday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "MME",
+                "CourseName": "MM2105-Fundamentals of Polymer Science and Technology",
+                "type": "R-108"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "MME",
+                "CourseName": "MM2105-Fundamentals of Polymer Science and Technology",
+                "type": "R-108"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "17:55",
+                "Dept": "MME",
+                "CourseName": "MM2103-Thermodynamics and Phase Equilibria (Lab)",
+                "type": "Dept. Lab"
+            }
+        ]
+    }
+}

@@ -1,0 +1,169 @@
+{
+    "monday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "ECE",
+                "CourseName": "EE2102-Network Analysis and Synthesis",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "ECE",
+                "CourseName": "EE2101-Measurements and Instrumentation",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "ECE",
+                "CourseName": "EC2101-Analog Circuits",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "ECE",
+                "CourseName": "EC2103-Semiconductor Devices",
+                "type": "EED R129"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "ECE",
+                "CourseName": "EC2102-Signals and Systems",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "17:55",
+                "Dept": "ECE",
+                "CourseName": "EC2103-Semiconductor Devices",
+                "type": "R-109"
+            }
+        ]
+    },
+    "tuesday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "ECE",
+                "CourseName": "EE2102-Network Analysis and Synthesis",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "ECE",
+                "CourseName": "EE2101-Measurements and Instrumentation",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "ECE",
+                "CourseName": "EC2101-Analog Circuits",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "ECE",
+                "CourseName": "EC2103-Semiconductor Devices",
+                "type": "EED R129"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "ECE",
+                "CourseName": "EC2102-Signals and Systems",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "17:55",
+                "Dept": "ECE",
+                "CourseName": "EC2103-Semiconductor Devices",
+                "type": "R-109"
+            }
+        ]
+    },
+    "wednesday": {
+        "Schedule": [
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "ECE",
+                "CourseName": "EC2102-Signals and Systems (TuT)",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "17:55",
+                "Dept": "ECE",
+                "CourseName": "EC2101-Analog Circuits/EE2101-Measurements and Instrumentation (G1/G2)",
+                "type": "LT102"
+            }
+        ]
+    },
+    "thursday": {
+        "Schedule": [
+            {
+                "timeStart": "09:00",
+                "timeEnd": "09:55",
+                "Dept": "ECE",
+                "CourseName": "EE2102-Network Analysis and Synthesis",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "ECE",
+                "CourseName": "EE2101-Measurements and Instrumentation",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "11:00",
+                "timeEnd": "11:55",
+                "Dept": "ECE",
+                "CourseName": "EC2101-Analog Circuits",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "ECE",
+                "CourseName": "EC2103-Semiconductor Devices",
+                "type": "EED R129"
+            },
+            {
+                "timeStart": "15:00",
+                "timeEnd": "15:55",
+                "Dept": "ECE",
+                "CourseName": "EC2102-Signals and Systems",
+                "type": "LT102"
+            },
+            {
+                "timeStart": "16:00",
+                "timeEnd": "17:55",
+                "Dept": "ECE",
+                "CourseName": "EC2101-Analog Circuits/EE2101-Measurements and Instrumentation (G2/G3)",
+                "type": "LT102"
+            }
+        ]
+    },
+    "friday": {
+        "Schedule": [
+            {
+                "timeStart": "16:00",
+                "timeEnd": "17:55",
+                "Dept": "ECE",
+                "CourseName": "EC2101-Analog Circuits/EE2101-Measurements and Instrumentation (G3/G1)",
+                "type": "LT102"
+            }
+        ]
+    }
+}
