@@ -34,13 +34,6 @@
     "tuesday": {
         "Schedule": [
             {
-                "timeStart": "09:00",
-                "timeEnd": "09:55",
-                "Dept": "MNC",
-                "CourseName": "MA2102-Probability and Stochastic Processes",
-                "type": "R-107"
-            },
-            {
                 "timeStart": "10:00",
                 "timeEnd": "10:55",
                 "Dept": "MNC",
@@ -52,6 +45,13 @@
                 "timeEnd": "11:55",
                 "Dept": "MNC",
                 "CourseName": "MA2101-Design and Analysis of Algorithms",
+                "type": "R-107"
+            },
+            {
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
+                "Dept": "MNC",
+                "CourseName": "MA2102-Probability and Stochastic Processes",
                 "type": "R-107"
             }
         ]
