@@ -56,7 +56,7 @@
             },
             {
                 "timeStart": "15:00",
-                "timeEnd": "16:55",
+                "timeEnd": "15:55",
                 "Dept": "CE",
                 "CourseName": "CE2101-Geomatics Engineering",
                 "type": "R-102"
@@ -107,11 +107,19 @@
             },
             {
                 "timeStart": "09:00",
-                "timeEnd": "10:55",
+                "timeEnd": "09:55",
                 "Dept": "CE",
                 "CourseName": "CE2102-Structural Mechanics",
                 "type": "R-104"
+            },
+            {
+                "timeStart": "10:00",
+                "timeEnd": "10:55",
+                "Dept": "CE",
+                "CourseName": "CE2102-Structural Mechanics (T)",
+                "type": "R-104"
             }
+
         ]
     },
     "friday": {
@@ -124,8 +132,8 @@
                 "type": "Lab"
             },
             {
-                "timeStart": "11:00",
-                "timeEnd": "11:55",
+                "timeStart": "12:00",
+                "timeEnd": "12:55",
                 "Dept": "CE",
                 "CourseName": "CE2104-Geology for Engineers",
                 "type": "R-104"
