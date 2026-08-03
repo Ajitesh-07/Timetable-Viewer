@@ -13,6 +13,7 @@ import chTimetable from '../../lib/timetable/CH.json';
 import mncTimetable from '../../lib/timetable/MNC.json';
 import eceTimetable from '../../lib/timetable/ECE.json';
 import mmeTimetable from '../../lib/timetable/MME.json';
+import oldScheduleTimetable from '../../lib/timetable/schedule.json';
 
 const branchMap: Record<string, Record<string, { Schedule?: ScheduleEntry[] }>> = {
   PH: epTimetable,
@@ -57,6 +58,14 @@ type ScheduleEntry = {
   Dept?: string;
   type: string;
 };
+
+type OldScheduleEntry = ScheduleEntry & {
+  GroupStart: string;
+  GroupEnd: string;
+};
+
+type OldTimetableData = Record<string, { Schedule?: OldScheduleEntry[] }>;
+const oldTimetable = oldScheduleTimetable as unknown as OldTimetableData;
 
 type WeekDay = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday';
 
@@ -143,7 +152,7 @@ const TimetablePage = () => {
   let defaultDay: WeekDay = 'monday';
   if (dayNumber >= 1 && dayNumber <= 5) defaultDay = daysOfWeek[dayNumber - 1];
 
-  const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: string; group: string; rollNo: string } | null>(null);
+  const [selectedStudentInfo, setSelectedStudentInfo] = useState<{ name: string; group: string; rollNo: string; isFirstYear: boolean } | null>(null);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [selectedDay, setSelectedDay] = useState<WeekDay>(defaultDay);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -151,40 +160,57 @@ const TimetablePage = () => {
 
   useEffect(() => {
     if (selectedStudentInfo) {
-      const { name, group, rollNo } = selectedStudentInfo;
-      const branchCode = rollNo.substring(4, 6);
+      const { name, group, rollNo, isFirstYear } = selectedStudentInfo;
+      let relevantCourses: ScheduleEntry[] = [];
+      let branchCode = "";
       
-      if (branchCode === 'ES') {
-        setErrorMsg("Schedule for ES branch is currently unavailable.");
-        setSelectedStudent(null);
-        return;
-      }
-      
-      const timetableData = branchMap[branchCode];
-      
-      if (!timetableData) {
-        setErrorMsg(`Timetable for branch ${branchCode} not found.`);
-        setSelectedStudent(null);
-        return;
-      }
+      if (isFirstYear) {
+        branchCode = rollNo.substring(4, 6);
+        const parsedGroup = parseInt(group.replace("G-", ""), 10);
+        const daySchedule = oldTimetable[selectedDay]?.Schedule || [];
+        
+        const filtered = daySchedule.filter((course: OldScheduleEntry) => {
+          const start = parseInt(course.GroupStart, 10);
+          const end = parseInt(course.GroupEnd, 10);
+          return parsedGroup >= start && parsedGroup <= end;
+        });
+        relevantCourses = getTimetable(filtered);
+        setErrorMsg(null);
+      } else {
+        branchCode = rollNo.substring(4, 6);
+        
+        if (branchCode === 'ES') {
+          setErrorMsg("Schedule for ES branch is currently unavailable.");
+          setSelectedStudent(null);
+          return;
+        }
+        
+        const timetableData = branchMap[branchCode];
+        
+        if (!timetableData) {
+          setErrorMsg(`Timetable for branch ${branchCode} not found.`);
+          setSelectedStudent(null);
+          return;
+        }
 
-      setErrorMsg(null);
-      const daySchedule = timetableData[selectedDay as keyof typeof timetableData]?.Schedule as ScheduleEntry[] || [];
+        setErrorMsg(null);
+        const daySchedule = timetableData[selectedDay as keyof typeof timetableData]?.Schedule as ScheduleEntry[] || [];
+        relevantCourses = getTimetable(daySchedule);
+      }
       
-      if (!daySchedule.length) {
+      if (!relevantCourses.length) {
         const studentSchedule = getSchedule([], name, group, rollNo, branchCode);
         setSelectedStudent(studentSchedule);
         return;
       }
       
-      const relevantCourses = getTimetable(daySchedule);
       const studentSchedule = getSchedule(relevantCourses, name, group, rollNo, branchCode);
       setSelectedStudent(studentSchedule);
     }
   }, [selectedStudentInfo, selectedDay]);
 
-  const handleSelect = useCallback((name: string, group: string, rollNo: string) => {
-    setSelectedStudentInfo({ name, group, rollNo });
+  const handleSelect = useCallback((name: string, group: string, rollNo: string, isFirstYear: boolean) => {
+    setSelectedStudentInfo({ name, group, rollNo, isFirstYear });
     setSelectedDay(defaultDay);
   }, [defaultDay]);
 

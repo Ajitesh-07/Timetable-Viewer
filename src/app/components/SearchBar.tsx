@@ -1,11 +1,22 @@
 'use client';
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import nameMap from '../../../lib/nameMap.json';
+import nameMap1 from '../../../lib/nameMap.json';
+import nameMap2 from '../../../lib/nameMap2.json';
 import styles from './SearchBar.module.css';
+
+const nameMap: Record<string, { data: string[], isFirstYear: boolean }> = {};
+
+Object.entries(nameMap1).forEach(([name, data]) => {
+    nameMap[name] = { data: data as string[], isFirstYear: false };
+});
+
+Object.entries(nameMap2).forEach(([name, data]) => {
+    nameMap[name] = { data: data as string[], isFirstYear: true };
+});
 
 interface SearchBarProps {
     placeholder?: string;
-    onSelect: (name: string, group: string, rollNo: string) => void;
+    onSelect: (name: string, group: string, rollNo: string, isFirstYear: boolean) => void;
     showGroup?: boolean;
 }
 
@@ -26,9 +37,9 @@ export default function SearchBar({
     useEffect(() => {
         if (query.trim().length > 0 && query !== selectedName) {
             const q = query.toLowerCase();
-            const filtered = Object.entries(nameMap).filter(([name, data]) =>
+            const filtered = Object.entries(nameMap).filter(([name, entry]) =>
                 name.toLowerCase().includes(q) ||
-                (data as string[])[1].toLowerCase().includes(q)
+                entry.data[1].toLowerCase().includes(q)
             ).map(([name]) => name);
             setSuggestions(filtered.slice(0, 50));
             setIsOpen(true);
@@ -54,9 +65,9 @@ export default function SearchBar({
         setQuery(name);
         setSelectedName(name);
         setIsOpen(false);
-        const data = nameMap[name as keyof typeof nameMap];
-        if (data) {
-            onSelect(name, data[0], data[1]);
+        const entry = nameMap[name];
+        if (entry) {
+            onSelect(name, entry.data[0], entry.data[1], entry.isFirstYear);
         }
     }, [onSelect]);
 
@@ -139,7 +150,7 @@ export default function SearchBar({
             {isOpen && suggestions.length > 0 && (
                 <ul className={styles.suggestions} ref={listRef}>
                     {suggestions.map((name, i) => {
-                        const data = nameMap[name as keyof typeof nameMap];
+                        const entry = nameMap[name];
                         return (
                             <li
                                 key={name}
@@ -147,9 +158,9 @@ export default function SearchBar({
                                 className={`${styles.item} ${i === activeIndex ? styles.itemActive : ''}`}
                             >
                                 <span className={styles.itemName}>{name}</span>
-                                {showGroup && data && (
+                                {showGroup && entry && (
                                     <span className={styles.itemMeta}>
-                                        {(data as string[])[1]} · Group {data[0]}
+                                        {entry.data[1]} · Group {entry.data[0]}
                                     </span>
                                 )}
                             </li>
