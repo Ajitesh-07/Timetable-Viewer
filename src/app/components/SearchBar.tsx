@@ -34,13 +34,15 @@ export default function SearchBar({
     const [selectedName, setSelectedName] = useState(initialValue);
     const containerRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLUListElement>(null);
+    const initializedRef = useRef(false);
 
     useEffect(() => {
-        if (initialValue && !query) {
+        if (initialValue && !initializedRef.current) {
             setQuery(initialValue);
             setSelectedName(initialValue);
+            initializedRef.current = true;
         }
-    }, [initialValue, query]);
+    }, [initialValue]);
 
     // Filter suggestions
     useEffect(() => {
