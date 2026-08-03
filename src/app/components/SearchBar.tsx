@@ -18,20 +18,29 @@ interface SearchBarProps {
     placeholder?: string;
     onSelect: (name: string, group: string, rollNo: string, isFirstYear: boolean) => void;
     showGroup?: boolean;
+    initialValue?: string;
 }
 
 export default function SearchBar({
     placeholder = 'Search by name or roll number...',
     onSelect,
     showGroup = true,
+    initialValue = '',
 }: SearchBarProps) {
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState(initialValue);
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [isOpen, setIsOpen] = useState(false);
     const [activeIndex, setActiveIndex] = useState(-1);
-    const [selectedName, setSelectedName] = useState('');
+    const [selectedName, setSelectedName] = useState(initialValue);
     const containerRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLUListElement>(null);
+
+    useEffect(() => {
+        if (initialValue && !query) {
+            setQuery(initialValue);
+            setSelectedName(initialValue);
+        }
+    }, [initialValue, query]);
 
     // Filter suggestions
     useEffect(() => {

@@ -159,6 +159,20 @@ const TimetablePage = () => {
   const downloadDivRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    try {
+      const saved = localStorage.getItem('lastSearchedStudent');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.name && parsed.group && parsed.rollNo) {
+          setSelectedStudentInfo(parsed);
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  useEffect(() => {
     if (selectedStudentInfo) {
       const { name, group, rollNo, isFirstYear } = selectedStudentInfo;
       let relevantCourses: ScheduleEntry[] = [];
@@ -210,8 +224,14 @@ const TimetablePage = () => {
   }, [selectedStudentInfo, selectedDay]);
 
   const handleSelect = useCallback((name: string, group: string, rollNo: string, isFirstYear: boolean) => {
-    setSelectedStudentInfo({ name, group, rollNo, isFirstYear });
+    const info = { name, group, rollNo, isFirstYear };
+    setSelectedStudentInfo(info);
     setSelectedDay(defaultDay);
+    try {
+      localStorage.setItem('lastSearchedStudent', JSON.stringify(info));
+    } catch {
+      // ignore
+    }
   }, [defaultDay]);
 
   const handleDownload = async () => {
@@ -246,6 +266,7 @@ const TimetablePage = () => {
         <SearchBar
           placeholder="Search by student name..."
           onSelect={handleSelect}
+          initialValue={selectedStudentInfo?.name || ''}
         />
       </div>
 
