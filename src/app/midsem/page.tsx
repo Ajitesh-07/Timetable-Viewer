@@ -19,11 +19,12 @@ interface Student {
 }
 
 async function getExamSchedule(info: { name: string; group: string; rollNo: string }): Promise<Student> {
-  const res = await fetch(`midsem/api?idx=${info.rollNo.toUpperCase()}`);
+  const res = await fetch(`/midsem/api?idx=${info.rollNo.toUpperCase()}`);
   const data = await res.json();
+  const parsedGroup = parseInt(info.group.toString().replace(/[^0-9]/g, ''), 10) || 0;
   return {
     name: info.name,
-    group: parseInt(info.group),
+    group: parsedGroup,
     rollno: info.rollNo,
     timetable: data.results || [],
   };
@@ -33,6 +34,20 @@ const MidsemPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
   const [selectedInfo, setSelectedInfo] = useState<{ name: string; group: string; rollNo: string } | null>(null);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('lastSearchedStudent');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && parsed.name && parsed.rollNo) {
+          setSelectedInfo(parsed);
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
 
   useEffect(() => {
     if (!selectedInfo) return;
@@ -54,8 +69,14 @@ const MidsemPage = () => {
     return () => { mounted = false; };
   }, [selectedInfo]);
 
-  const handleSelect = useCallback((name: string, group: string, rollNo: string) => {
-    setSelectedInfo({ name, group, rollNo });
+  const handleSelect = useCallback((name: string, group: string, rollNo: string, isFirstYear?: boolean) => {
+    const info = { name, group, rollNo, isFirstYear: !!isFirstYear };
+    setSelectedInfo(info);
+    try {
+      localStorage.setItem('lastSearchedStudent', JSON.stringify(info));
+    } catch {
+      // ignore
+    }
   }, []);
 
   // Calculate time until next exam (accounting for exam start time)
@@ -102,6 +123,7 @@ const MidsemPage = () => {
         <SearchBar
           placeholder="Search by student name..."
           onSelect={handleSelect}
+          initialValue={selectedInfo?.name || ''}
         />
       </div>
 

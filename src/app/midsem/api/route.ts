@@ -23,7 +23,9 @@ interface ReturnSlot {
 
 function sortReturnSlots(slots: ReturnSlot[]): ReturnSlot[] {
     return slots.sort((a, b) => {
-        return parseDate(a.date).getTime() - parseDate(b.date).getTime();
+        const dateDiff = parseDate(a.date).getTime() - parseDate(b.date).getTime();
+        if (dateDiff !== 0) return dateDiff;
+        return a.time.localeCompare(b.time);
     });
 }
 
@@ -36,26 +38,36 @@ function toLowercaseExceptFirst(str: string): string {
     if (!str) {
         return "";
     }
-    return str.charAt(0) + str.slice(1).toLowerCase();
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
+function formatCourse(code: string, nameMap: Record<string, string>): string {
+    const name = nameMap[code.toUpperCase()];
+    if (name) return `${name} (${code})`;
+    return code;
+}
 
 let indexCache: Slot[] | null = null;
+let nameMapCache: Record<string, string> | null = null;
 
 export async function GET(request: NextRequest) {
     const url = request.nextUrl;
-    const rollno = (url.searchParams.get('idx'))?.toString().toUpperCase()
-    if (rollno?.toUpperCase() == "2501EC15") {
-        return NextResponse.json({ error: 'q (roll) required' }, { status: 400 });
-    }
+    const rollno = (url.searchParams.get('idx'))?.toString().toUpperCase();
+
     if (!rollno) {
-        return NextResponse.json({ error: 'q (roll) required' }, { status: 400 });
+        return NextResponse.json({ error: 'Roll number (idx) is required' }, { status: 400 });
     }
 
     if (!indexCache) {
         const indexPath = path.join(process.cwd(), 'public', 'data', 'midSemSchdl.json');
         const raw = await fs.readFile(indexPath, 'utf8');
         indexCache = JSON.parse(raw) as Slot[];
+    }
+
+    if (!nameMapCache) {
+        const namePath = path.join(process.cwd(), 'public', 'data', 'courseNameMap.json');
+        const raw = await fs.readFile(namePath, 'utf8');
+        nameMapCache = JSON.parse(raw) as Record<string, string>;
     }
 
     const results: ReturnSlot[] = [];
@@ -65,16 +77,16 @@ export async function GET(request: NextRequest) {
             results.push({
                 date: slot.date,
                 day: toLowercaseExceptFirst(slot.day),
-                time: (slot.shift.toUpperCase() == 'MORNING') ? "10:30 - 12:30" : "15:00 - 18:00",
-                course: slot.coursecode,
+                time: (slot.shift.toUpperCase() === 'MORNING') ? "10:30 - 12:30" : "15:00 - 17:00",
+                course: formatCourse(slot.coursecode, nameMapCache!),
                 location: slot.roomno
             });
         }
-    })
+    });
 
     return NextResponse.json({
         results: sortReturnSlots(results)
     }, {
         status: 200
     });
-}
+}
